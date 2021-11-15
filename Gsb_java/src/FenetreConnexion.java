@@ -26,7 +26,7 @@ public class FenetreConnexion extends JFrame implements ActionListener {
 	
 	public FenetreConnexion() {
 		
-		this.setTitle("RaSio");
+		this.setTitle("GSB_2");
     	this.setLocationRelativeTo(null);
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setSize(600, 400);
