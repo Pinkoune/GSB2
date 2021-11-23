@@ -84,7 +84,7 @@ public class FenetreConnexion extends JFrame implements ActionListener {
     		String mdp = String.valueOf(getpass);
     		if(Modele.connecter(login, mdp)) {
     			this.dispose();
-    			FenetreAccueil uneAutreFenetre = new FenetreAccueil();
+    			AccueilResponsable uneAutreFenetre = new AccueilResponsable();
     		}
     		else {
     			JLabel reponse = new JLabel("Erreur");	

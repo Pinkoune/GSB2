@@ -17,8 +17,7 @@ public class Modele {
 	public static void connexionBdd() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connexion = DriverManager.getConnection("jdbc:mysql://172.16.203.212/rasio?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "sio", "slam");
-			//connexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/rasio?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "");
+			connexion = DriverManager.getConnection("jdbc:mysql://172.16.203.211/gsb2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "sio", "slam");
 			st = connexion.createStatement();
 		} catch (ClassNotFoundException e) {
 			System.out.println("Le driver n'as pu être chargé");
@@ -45,7 +44,7 @@ public class Modele {
 		boolean rep = false; 
 		int j = 0 ;
 		try {
-			pst = connexion.prepareStatement("SELECT COUNT(*) AS nb FROM compte WHERE login = ? AND mdp = ?");
+			pst = connexion.prepareStatement("SELECT COUNT(*) AS nb FROM Visiteur WHERE login = ? AND mdp = sha1(?)");
             pst.setString(1, unLogin);
             pst.setString(2, unMdp);
             rs = pst.executeQuery();
