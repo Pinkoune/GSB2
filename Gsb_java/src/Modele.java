@@ -13,22 +13,22 @@ public class Modele {
 	public static ResultSet rs;
 	private static PreparedStatement pst;
 	
-	// Methodes de connexion a la bdd
+	// Methodes de connexion à la bdd
 	public static void connexionBdd() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connexion = DriverManager.getConnection("jdbc:mysql://localhost/gsb2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "root");
+			connexion = DriverManager.getConnection("jdbc:mysql://172.16.203.211/gsb2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "sio", "slam");
 			st = connexion.createStatement();
 		} catch (ClassNotFoundException e) {
-			System.out.println("Le driver n'as pu ï¿½tre chargï¿½");
+			System.out.println("Le driver n'as pu être chargé");
 			//	erreur.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("Erreur de la connexion ï¿½ la bdd");
+			System.out.println("Erreur de la connexion à la bdd");
 			//	e.printStackTrace();
 		}
 	}
 	
-	//Mï¿½thode de la deconnexion de la bdd
+	//Méthode de la déconnexion de la bdd
 	public  static void deconnexion() {
 		try {
 			connexion.close(); // Fermeture de la connexion
@@ -38,17 +38,17 @@ public class Modele {
 			e.printStackTrace();
 		} 	
 	}
-
+	
 	public static boolean connecter(String unLogin, String unMdp) {
 		Modele.connexionBdd();
-		boolean rep = false;
+		boolean rep = false; 
 		int j = 0 ;
 		try {
 			pst = connexion.prepareStatement("SELECT COUNT(*) AS nb FROM Visiteur WHERE login = ? AND mdp = sha1(?)");
-			pst.setString(1, unLogin);
-			pst.setString(2, unMdp);
-			rs = pst.executeQuery();
-			while( rs.next()) { // .next il rentre dans le tableau ï¿½ la premier ligne et le parcours l ar l
+            pst.setString(1, unLogin);
+            pst.setString(2, unMdp);
+            rs = pst.executeQuery();
+			while( rs.next()) { // .next il rentre dans le tableau à la premier ligne et le parcours l ar l
 				j = rs.getInt("nb");
 			}
 			if ( j == 1 ) {
