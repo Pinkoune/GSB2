@@ -87,11 +87,32 @@ public class FenetreConnexion extends JFrame implements ActionListener {
 		if (e.getSource() == btnConnexion) {
 			String pseudo = jtextIdentifiant.getText();
 			String mdp = jpassMdp.getText();
-			if (Modele.connecter(pseudo, mdp)) {
+			if(Modele.connecter(pseudo, mdp) == 1){
 				this.dispose();
-				new FenetreAccueil().getMonPanelGlobal();
+				new AccueilResponsable().getMonPanelGlobal();
+			}
+			if(Modele.connecter(pseudo, mdp) == 2){
+				this.dispose();
+				new AccueilDirecteur().getMonPanelGlobal();
+			}
+			if(Modele.connecter(pseudo, mdp) == 3){
+				this.dispose();
+				new AccueilVisiteur().getMonPanelGlobal();
+			}
+			/*if (Modele.coResponsable(pseudo, mdp)) {
+				this.dispose();
+				new AccueilResponsable().getMonPanelGlobal();
 
 			}
+			if (Modele.coDirecteur(pseudo, mdp)) {
+				this.dispose();
+				new AccueilDirecteur().getMonPanelGlobal();
+			}
+			if (Modele.coVisiteur(pseudo, mdp)) {
+				this.dispose();
+				new AccueilVisiteur().getMonPanelGlobal();
+
+			}*/
 			this.lblErreur.setText("Identifiant incorrect.");
 		}
 	}

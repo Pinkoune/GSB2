@@ -39,19 +39,51 @@ public class Modele {
 		} 	
 	}
 
-	public static boolean connecter(String unLogin, String unMdp) {
+	public static int connecter(String unLogin, String unMdp) {
 		Modele.connexionBdd();
-		boolean rep = false;
+		int rep = 0;
 		int j = 0 ;
+		String p = null;
 		try {
-			pst = connexion.prepareStatement("SELECT COUNT(*) AS nb FROM Visiteur WHERE login = ? AND mdp = sha1(?)");
+			pst = connexion.prepareStatement("SELECT COUNT(*) AS nb, statut FROM Visiteur WHERE login = ? AND mdp = sha1(?)");
 			pst.setString(1, unLogin);
 			pst.setString(2, unMdp);
 			rs = pst.executeQuery();
 			while( rs.next()) { // .next il rentre dans le tableau � la premier ligne et le parcours l ar l
 				j = rs.getInt("nb");
+				p = rs.getString("statut");
 			}
-			if ( j == 1 ) {
+			if (j == 1 && p == "r") {
+				rep = 1;
+			}
+			if(j == 1 && p == "d") {
+				rep = 2;
+			}
+			if(j == 1 && p == null) {
+				rep = 3;
+			}
+		}catch (SQLException e) {
+			System.out.println("Erreur connexion");
+		}
+		Modele.deconnexion();
+		return rep;
+	}
+/*
+	public static boolean coVisiteur(String unLogin, String unMdp) {
+		Modele.connexionBdd();
+		boolean rep = false;
+		int j = 0 ;
+		String statut = null;
+		try {
+			pst = connexion.prepareStatement("SELECT COUNT(*) AS nb, statut FROM Visiteur WHERE login = ? AND mdp = sha1(?) AND statut = ?");
+			pst.setString(1, unLogin);
+			pst.setString(2, unMdp);
+			pst.setString(3, statut);
+			rs = pst.executeQuery();
+			while( rs.next()) { // .next il rentre dans le tableau � la premier ligne et le parcours l ar l
+				j = rs.getInt("nb");
+			}
+			if (j == 1) {
 				rep = true;
 			}
 		}catch (SQLException e) {
@@ -60,8 +92,52 @@ public class Modele {
 		Modele.deconnexion();
 		return rep;
 	}
-	
-	
-	
-	
+
+	public static boolean coResponsable(String unLogin, String unMdp) {
+		Modele.connexionBdd();
+		boolean rep = false;
+		int j = 0 ;
+		String statut = "r";
+		try {
+			pst = connexion.prepareStatement("SELECT COUNT(*) AS nb2, statut FROM Visiteur WHERE login = ? AND mdp = sha1(?) AND statut = ?");
+			pst.setString(1, unLogin);
+			pst.setString(2, unMdp);
+			pst.setString(3, statut);
+			rs = pst.executeQuery();
+			while( rs.next()) { // .next il rentre dans le tableau � la premier ligne et le parcours l ar l
+				j = rs.getInt("nb2");
+			}
+			if (j == 1) {
+				rep = true;
+			}
+		}catch (SQLException e) {
+			System.out.println("Erreur connexion");
+		}
+		Modele.deconnexion();
+		return rep;
+	}
+
+	public static boolean coDirecteur(String unLogin, String unMdp) {
+		Modele.connexionBdd();
+		boolean rep = false;
+		int j = 0 ;
+		String statut = "d";
+		try {
+			pst = connexion.prepareStatement("SELECT COUNT(*) AS nb3, statut FROM Visiteur WHERE login = ? AND mdp = sha1(?) AND statut = ?");
+			pst.setString(1, unLogin);
+			pst.setString(2, unMdp);
+			pst.setString(3, statut);
+			rs = pst.executeQuery();
+			while( rs.next()) { // .next il rentre dans le tableau � la premier ligne et le parcours l ar l
+				j = rs.getInt("nb3");
+			}
+			if (j == 1) {
+				rep = true;
+			}
+		}catch (SQLException e) {
+			System.out.println("Erreur connexion");
+		}
+		Modele.deconnexion();
+		return rep;
+	}*/
 }
