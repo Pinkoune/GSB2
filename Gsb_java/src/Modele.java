@@ -13,22 +13,27 @@ public class Modele {
 	public static ResultSet rs;
 	private static PreparedStatement pst;
 	
-	// Methodes de connexion à la bdd
+	/**
+	 * Connexion a la base de donnees
+	 * @return
+	 */
+	
+	// Methode de connexion a la bdd
 	public static void connexionBdd() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connexion = DriverManager.getConnection("jdbc:mysql://172.16.203.211/gsb2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "sio", "slam");
+			connexion = DriverManager.getConnection("jdbc:mysql://localhost/gsb2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "root");
 			st = connexion.createStatement();
 		} catch (ClassNotFoundException e) {
-			System.out.println("Le driver n'as pu être chargé");
+			System.out.println("Le driver n'as pu ï¿½tre chargï¿½");
 			//	erreur.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("Erreur de la connexion à la bdd");
+			System.out.println("Erreur de la connexion ï¿½ la bdd");
 			//	e.printStackTrace();
 		}
 	}
 	
-	//Méthode de la déconnexion de la bdd
+	//Methode de la deconnexion de la bdd
 	public  static void deconnexion() {
 		try {
 			connexion.close(); // Fermeture de la connexion
@@ -39,19 +44,27 @@ public class Modele {
 		} 	
 	}
 	
-	public static boolean connecter(String unLogin, String unMdp) {
+	/**
+	 * Methodes de connexion des differents utilisateur
+	 * @param unLogin
+	 * @param unMdp
+	 * @return
+	 */
+	
+	//Connexion du visiteur
+	public static boolean coVisiteur(String unLogin, String unMdp) {
 		Modele.connexionBdd();
-		boolean rep = false; 
+		boolean rep = false;
 		int j = 0 ;
 		try {
-			pst = connexion.prepareStatement("SELECT COUNT(*) AS nb FROM Visiteur WHERE login = ? AND mdp = sha1(?)");
-            pst.setString(1, unLogin);
-            pst.setString(2, unMdp);
-            rs = pst.executeQuery();
-			while( rs.next()) { // .next il rentre dans le tableau à la premier ligne et le parcours l ar l
+			pst = connexion.prepareStatement("SELECT COUNT(*) AS nb FROM Visiteur WHERE login = ? AND mdp = sha1(?) AND statut IS NULL;");
+			pst.setString(1, unLogin);
+			pst.setString(2, unMdp);
+			rs = pst.executeQuery();
+			while( rs.next()) { // .next il rentre dans le tableau a la premiere ligne et le parcours l par l
 				j = rs.getInt("nb");
 			}
-			if ( j == 1 ) {
+			if (j == 1) {
 				rep = true;
 			}
 		}catch (SQLException e) {
@@ -60,8 +73,54 @@ public class Modele {
 		Modele.deconnexion();
 		return rep;
 	}
-	
-	
-	
-	
+
+	//Connexion du responsable
+	public static boolean coResponsable(String unLogin, String unMdp) {
+		Modele.connexionBdd();
+		boolean rep = false;
+		int j = 0 ;
+		String statut = "r";
+		try {
+			pst = connexion.prepareStatement("SELECT COUNT(*) AS nb2 FROM Visiteur WHERE login = ? AND mdp = sha1(?) AND statut = ?;");
+			pst.setString(1, unLogin);
+			pst.setString(2, unMdp);
+			pst.setString(3, statut);
+			rs = pst.executeQuery();
+			while( rs.next()) { // .next il rentre dans le tableau a la premiere ligne et le parcours l par l
+				j = rs.getInt("nb2");
+			}
+			if (j == 1) {
+				rep = true;
+			}
+		}catch (SQLException e) {
+			System.out.println("Erreur connexion");
+		}
+		Modele.deconnexion();
+		return rep;
+	}
+
+	//Connexion du directeur
+	public static boolean coDirecteur(String unLogin, String unMdp) {
+		Modele.connexionBdd();
+		boolean rep = false;
+		int j = 0 ;
+		String statut = "d";
+		try {
+			pst = connexion.prepareStatement("SELECT COUNT(*) AS nb3 FROM Visiteur WHERE login = ? AND mdp = sha1(?) AND statut = ?;");
+			pst.setString(1, unLogin);
+			pst.setString(2, unMdp);
+			pst.setString(3, statut);
+			rs = pst.executeQuery();
+			while( rs.next()) { // .next il rentre dans le tableau a la premiere ligne et le parcours l par l
+				j = rs.getInt("nb3");
+			}
+			if (j == 1) {
+				rep = true;
+			}
+		}catch (SQLException e) {
+			System.out.println("Erreur connexion");
+		}
+		Modele.deconnexion();
+		return rep;
+	}
 }
