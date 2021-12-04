@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AccueilResponsable extends JPanel implements ActionListener {
+public class AccueilDirecteur extends JPanel implements ActionListener {
 
     //JFrame
     private JFrame framePrincipale;
@@ -15,7 +15,7 @@ public class AccueilResponsable extends JPanel implements ActionListener {
     //JLabel
     private JLabel lblTest;
 
-    public AccueilResponsable() {
+    public AccueilDirecteur() {
         //Instanciation de la frame
         this.framePrincipale = new JFrame();
 
@@ -35,7 +35,7 @@ public class AccueilResponsable extends JPanel implements ActionListener {
         this.framePrincipale.setResizable(false);
 
         //Insianciation des labels
-        this.lblTest = new JLabel("Responsable");
+        this.lblTest = new JLabel("Directeur");
 
         //Ajout du contenu dans les panels
         this.monPanel.add(lblTest);
@@ -49,7 +49,7 @@ public class AccueilResponsable extends JPanel implements ActionListener {
         this.framePrincipale.getContentPane().add(monPanelGlobal);
         this.framePrincipale.setVisible(true);
 
-}
+    }
 
     //Get du panel global
     public JPanel getMonPanelGlobal() {
