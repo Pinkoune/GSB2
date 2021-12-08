@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 06 déc. 2021 à 22:42
+-- Généré le : mer. 08 déc. 2021 à 20:08
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -20,6 +20,40 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `gsb2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `empruntm`
+--
+
+DROP TABLE IF EXISTS `empruntm`;
+CREATE TABLE IF NOT EXISTS `empruntm` (
+  `idMateriel` int(11) NOT NULL,
+  `dateDebut` date NOT NULL,
+  `dateFin` date NOT NULL,
+  `idVisiteur` int(11) NOT NULL,
+  PRIMARY KEY (`idMateriel`),
+  KEY `id` (`idVisiteur`),
+  KEY `idMateriel` (`idMateriel`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `empruntv`
+--
+
+DROP TABLE IF EXISTS `empruntv`;
+CREATE TABLE IF NOT EXISTS `empruntv` (
+  `idVehicule` int(11) NOT NULL,
+  `dateDebut` int(11) NOT NULL,
+  `dateFin` int(11) NOT NULL,
+  `idVisiteur` int(11) NOT NULL,
+  PRIMARY KEY (`idVehicule`),
+  KEY `id` (`idVisiteur`),
+  KEY `idVehicule` (`idVehicule`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
