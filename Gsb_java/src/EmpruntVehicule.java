@@ -80,7 +80,7 @@ public class EmpruntVehicule extends JPanel implements ActionListener {
         //Instanciation des messages
         this.lblMessage = new JLabel("Vehicule - Emprunt");
         this.lblNomVehicule = new JLabel("Nom du Vehicule :");
-        this.lblDateDebut = new JLabel("Date du début de l'emprunt :");
+        this.lblDateDebut = new JLabel("Date du debut de l'emprunt :");
         this.lblDateFin = new JLabel("Date de fin de l'emprunt :");
         this.lblDuree = new JLabel("Duree de l'emprunt :");
         this.lblInsertion = new JLabel();

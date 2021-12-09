@@ -1,5 +1,5 @@
 /**
- * Suppression des Materiels
+ * Suppression des Vehicules
  * @author Jeremy
  */
 
@@ -16,15 +16,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class SuppMateriel extends JPanel implements ActionListener {
+public class EmpruntSuppVehicule extends JPanel implements ActionListener {
 
-    //Attributs privï¿½s
+    //Attributs privés
 
     //Frame
     private JFrame framePrincipale;
 
     //Panel
-    private JPanel panelSuppMateriel;
+    private JPanel panelSuppVehicule;
     private JPanel panelMessage;
     private JPanel panelChamps;
     private JPanel panelBtnQuitter;
@@ -32,7 +32,7 @@ public class SuppMateriel extends JPanel implements ActionListener {
 
     //Label
     private JLabel lblMessage;
-    private JLabel lblNomMateriel;
+    private JLabel lblNomVehicule;
     private JLabel lblInsertion;
 
     //JTextField
@@ -41,36 +41,36 @@ public class SuppMateriel extends JPanel implements ActionListener {
     //Bouton
     private JButton btnValider;
 
-    public SuppMateriel() {
+    public EmpruntSuppVehicule() {
 
         //Instanciation de la frame
         this.framePrincipale = new JFrame();
 
         //Instanciation des panels
-        this.panelSuppMateriel = new JPanel();
+        this.panelSuppVehicule = new JPanel();
         this.panelMessage = new JPanel();
         this.panelChamps = new JPanel();
         this.panelBtnQuitter = new JPanel();
         this.monPanelGlobal.setLayout(new BorderLayout());
 
         //Background des panels
-        this.panelSuppMateriel.setBackground(Color.white);
+        this.panelSuppVehicule.setBackground(Color.white);
         this.panelMessage.setBackground(Color.blue);
         this.panelChamps.setBackground(Color.white);
         this.panelBtnQuitter.setBackground(Color.white);
 
         //Disposition des panels
-        this.panelSuppMateriel.setLayout(new BorderLayout());
+        this.panelSuppVehicule.setLayout(new BorderLayout());
         this.panelMessage.setLayout(new FlowLayout());
         this.panelChamps.setLayout(new FlowLayout());
         this.panelBtnQuitter.setLayout(new FlowLayout());
 
         //Instanciation des messages
-        this.lblMessage = new JLabel("Materiel - suppression");
-        this.lblNomMateriel = new JLabel("Entrez le nom :");
+        this.lblMessage = new JLabel("Retirer un emprunt d'un vehicule");
+        this.lblNomVehicule = new JLabel("Entrez l'immatriculation :");
         this.lblInsertion = new JLabel("");
 
-        //Instanciation des entrï¿½es
+        //Instanciation des entrées
         this.jtfSuppression = new JTextField();
         this.jtfSuppression.setPreferredSize(new Dimension(150, 30));
 
@@ -82,22 +82,22 @@ public class SuppMateriel extends JPanel implements ActionListener {
         this.btnValider.addActionListener(this);
 
         //Ajout des attributs aux panels
-        this.panelSuppMateriel.add(panelMessage, BorderLayout.PAGE_START);
-        this.panelSuppMateriel.add(panelChamps, BorderLayout.CENTER);
-        this.panelSuppMateriel.add(panelBtnQuitter, BorderLayout.PAGE_END);
+        this.panelSuppVehicule.add(panelMessage, BorderLayout.PAGE_START);
+        this.panelSuppVehicule.add(panelChamps, BorderLayout.CENTER);
+        this.panelSuppVehicule.add(panelBtnQuitter, BorderLayout.PAGE_END);
 
         this.panelMessage.add(lblMessage);
 
-        this.panelChamps.add(lblNomMateriel);
+        this.panelChamps.add(lblNomVehicule);
         this.panelChamps.add(jtfSuppression);
         this.panelChamps.add(btnValider);
         this.panelChamps.add(lblInsertion);
 
-        //Toujours ï¿½ la fin
+        //Toujours à la fin
         this.framePrincipale.getRootPane().setDefaultButton(btnValider);
         this.framePrincipale.setAlwaysOnTop(true);
-        this.framePrincipale.getContentPane().add(panelSuppMateriel);
-        this.monPanelGlobal.add(panelSuppMateriel, BorderLayout.CENTER);
+        this.framePrincipale.getContentPane().add(panelSuppVehicule);
+        this.monPanelGlobal.add(panelSuppVehicule, BorderLayout.CENTER);
         this.framePrincipale.getContentPane().add(this.monPanelGlobal);
     }
 
@@ -107,21 +107,22 @@ public class SuppMateriel extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        //Si la source de l'ï¿½vï¿½nement est le JButton appelï¿½ 
+        //Si la source de l'évènement est le JButton appelé 
         if (e.getSource() == btnValider) {
-            String nomMateriel = jtfSuppression.getText();
-            int idMat = Modele.recupIdMateriel(nomMateriel);
-            if (Modele.suppressionMateriel(nomMateriel)) {
-            	if(Modele.suppressionEmpruntMateriel(idMat)) {
-            		lblInsertion.setText("Suppression effectuee.");
+            String modele = jtfSuppression.getText();
+            int idVehicule = Modele.recupIdVehicule(modele);
+            if (Modele.suppressionEmpruntVehicule(idVehicule)) {
+            	boolean statut = Modele.majStatutVehiculeLibre(idVehicule);
+            	if(statut) {
+            		lblInsertion.setText("Emprunt Retire.");
             	}
             	else {
-            		lblInsertion.setText("Probleme dans la suppression de l'emprunt.");
+            		lblInsertion.setText("Remise avec statut non effectue.");
             	}
-            } else {
-                lblInsertion.setText("Suppression non effectuee.");
+            }
+            else {
+            	lblInsertion.setText("Remise non effectue.");
             }
         }
     }
-
 }

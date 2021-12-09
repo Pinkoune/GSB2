@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 
 public class EmpruntMateriel extends JPanel implements ActionListener {
 
-    //Attributs priv�s
+    //Attributs prive
 
     //Frame
     private JFrame framePrincipale;
@@ -80,7 +80,7 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
         //Instanciation des messages
         this.lblMessage = new JLabel("Materiel - Emprunt");
         this.lblNomMateriel = new JLabel("Nom du materiel :");
-        this.lblDateDebut = new JLabel("Date du début de l'emprunt :");
+        this.lblDateDebut = new JLabel("Date du debut de l'emprunt :");
         this.lblDateFin = new JLabel("Date de fin de l'emprunt :");
         this.lblDuree = new JLabel("Duree de l'emprunt :");
         this.lblInsertion = new JLabel();

@@ -23,7 +23,7 @@ public class Modele {
 	public static void connexionBdd() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connexion = DriverManager.getConnection("jdbc:mysql://localhost/gsb2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "root");
+			connexion = DriverManager.getConnection("jdbc:mysql://localhost/gsb2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "");
 			st = connexion.createStatement();
 		} catch (ClassNotFoundException e) {
 			System.out.println("Le driver n'as pu etre charge");
@@ -313,12 +313,12 @@ public class Modele {
 	}
 	
 	//Affichage des emprunts de materiel
-		public static ArrayList < Materiel > affichageEmpruntMateriel() {
+		public static ArrayList < Materiel > affichageEmpruntMateriel(String unIdVisiteur) {
 	        ArrayList < Materiel > listeMateriel;
 	        listeMateriel = new ArrayList < Materiel > ();
 	        try {
 	            st = connexion.createStatement();
-	            rs = st.executeQuery("SELECT * FROM empruntm, materiel WHERE empruntm.idMateriel = materiel.idMateriel;");
+	            rs = st.executeQuery("SELECT * FROM empruntm, materiel WHERE empruntm.idMateriel = materiel.idMateriel AND idVisiteur = '"+ unIdVisiteur +"';");
 	            while (rs.next()) {
 	                String nomMateriel = rs.getString("nomMateriel");
 	                String typeMateriel = rs.getString("typeMateriel");
@@ -361,7 +361,7 @@ public class Modele {
 
     }
 	
-	//Mise a jour du statut du materiel
+	//Mise a jour du statut du materiel a occupe
 	public static boolean majStatutMateriel(int unIdMateriel) {
 		boolean rep = false;
         int result = 0;
@@ -379,13 +379,30 @@ public class Modele {
         return rep;
 	}
 	
+	//Mise a jour du statut du materiel non occupe
+		public static boolean majStatutMaterielLibre(int unIdMateriel) {
+			boolean rep = false;
+	        int result = 0;
+	        try {
+	            ps = connexion.prepareStatement("UPDATE materiel SET statut = null WHERE idMateriel = ?");
+	            ps.setInt(1, unIdMateriel);
+	            result = ps.executeUpdate();
+	            if (result == 1) {
+	                rep = true;
+	            }
+	        } catch (SQLException e) {
+	            System.out.println("Erreur de la mise a jour du statut.");
+	            e.printStackTrace();
+	        }
+	        return rep;
+		}
+	
 		//Suppression de l'emprunt du materiel
 		public static boolean suppressionEmpruntMateriel(int unIdMat) {
-	        //Suppression d'une course
 	        boolean rep = false;
 	        int result = 0;
 	        try {
-	            ps = connexion.prepareStatement("DELETE FROM materiel WHERE idMateriel = ?;");
+	            ps = connexion.prepareStatement("DELETE FROM empruntm WHERE idMateriel = ?;");
 	            ps.setInt(1, unIdMat);
 	            result = ps.executeUpdate();
 	            if (result == 1) {
@@ -432,13 +449,13 @@ public class Modele {
     }
 		
 	//Suppression du vehicule
-	public static boolean suppressionVehicule(String unImmat) {
+	public static boolean suppressionVehicule(String unModele) {
         //Suppression d'une course
         boolean rep = false;
         int result = 0;
         try {
-            ps = connexion.prepareStatement("DELETE FROM vehicule WHERE immat = ?;");
-            ps.setString(1, unImmat);
+            ps = connexion.prepareStatement("DELETE FROM vehicule WHERE modele = ?;");
+            ps.setString(1, unModele);
             result = ps.executeUpdate();
             if (result == 1) {
                 rep = true;
@@ -571,12 +588,12 @@ public class Modele {
 	}
 	
 	//Affichage des emprunts de materiel
-		public static ArrayList < Vehicule > affichageEmpruntVehicule() {
+		public static ArrayList < Vehicule > affichageEmpruntVehicule(String unIdVisiteur) {
 	        ArrayList < Vehicule > listeVehicule;
 	        listeVehicule = new ArrayList < Vehicule > ();
 	        try {
 	            st = connexion.createStatement();
-	            rs = st.executeQuery("SELECT * FROM empruntv, vehicule WHERE empruntv.idVehicule = vehicule.idVehicule;");
+	            rs = st.executeQuery("SELECT * FROM empruntv, vehicule WHERE empruntv.idVehicule = vehicule.idVehicule AND idVisiteur = '"+ unIdVisiteur +"';");
 	            while (rs.next()) {
 	                String immat = rs.getString("immat");
 	                String modele = rs.getString("modele");
@@ -637,23 +654,59 @@ public class Modele {
         return rep;
 	}
 	
-		//Suppression de l'emprunt du materiel
-		public static boolean suppressionEmpruntVehicule(int unIdMat) {
-	        //Suppression d'une course
-	        boolean rep = false;
-	        int result = 0;
-	        try {
-	            ps = connexion.prepareStatement("DELETE FROM vehicule WHERE idVehicule = ?;");
-	            ps.setInt(1, unIdMat);
-	            result = ps.executeUpdate();
-	            if (result == 1) {
-	                rep = true;
-	            }
-	        } catch (SQLException e) {
-	            System.out.println("Erreur de suppression d'un emprunt de vehicule.");
-	            e.printStackTrace();
-	        }
-	        return rep;
-	    }
+	//Suppression de l'emprunt du materiel
+	public static boolean suppressionEmpruntVehicule(int unIdVehicule) {
+        //Suppression d'une course
+        boolean rep = false;
+        int result = 0;
+        try {
+            ps = connexion.prepareStatement("DELETE FROM empruntv WHERE idVehicule = ?;");
+            ps.setInt(1, unIdVehicule);
+            result = ps.executeUpdate();
+            if (result == 1) {
+                rep = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur de suppression d'un emprunt de vehicule.");
+            e.printStackTrace();
+        }
+        return rep;
+    }
+	
+	//Mise a jour du statut du materiel non occupe
+	public static boolean majStatutVehiculeLibre(int unIdVehicule) {
+		boolean rep = false;
+        int result = 0;
+        try {
+            ps = connexion.prepareStatement("UPDATE vehicule SET statut = null WHERE idVehicule = ?");
+            ps.setInt(1, unIdVehicule);
+            result = ps.executeUpdate();
+            if (result == 1) {
+                rep = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur de la mise a jour du statut.");
+            e.printStackTrace();
+        }
+        return rep;
+	}
+
+	//Suppression de l'emprunt du materiel
+	public static boolean suppressionVehiculeMateriel(int unIdVehicule) {
+        boolean rep = false;
+        int result = 0;
+        try {
+            ps = connexion.prepareStatement("DELETE FROM empruntv WHERE idVehicule = ?;");
+            ps.setInt(1, unIdVehicule);
+            result = ps.executeUpdate();
+            if (result == 1) {
+                rep = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur de suppression d'un emprunt d'un vehicule.");
+            e.printStackTrace();
+        }
+        return rep;
+    }
 	
 }

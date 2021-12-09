@@ -24,13 +24,13 @@ class test {
 		String nom = "direc";
 		String mdp = "123";
 		Assert.assertEquals("Problème de connexion du visiteur", true , Modele.coVisiteur(nom, mdp));
-	}*/
+	}
 	
 	@Test
 	public void testRecupIdMateriel() {
 		String nom = "Galaxy S7";
 		Assert.assertEquals("Problème de recup de l'id via le nom du materiel", 3, Modele.recupIdMateriel(nom));
-	}
+	}*/
 	
 	@Test
 	public void testRecupIdVisiteur() {
