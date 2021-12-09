@@ -10,7 +10,9 @@ public class Materiel {
 	private String typeMateriel;
 	private float largeur;
 	private float longueur;
-
+	private String dateDebut;
+	private String dateFin;
+	private float duree;
 	
 	//Constructeur
 	public Materiel(String unNomMateriel, String unTypeMateriel, float uneLargeur, float uneLongueur) {
@@ -20,6 +22,16 @@ public class Materiel {
 		this.longueur = uneLongueur;
 	}
 	
+	public Materiel(String unNomMateriel, String unTypeMateriel, float uneLargeur, float uneLongueur, String uneDateDebut, String uneDateFin, float uneDuree) {
+		this.nomMateriel = unNomMateriel;
+		this.typeMateriel = unTypeMateriel;
+		this.largeur = uneLargeur;
+		this.longueur = uneLongueur;
+		this.dateDebut = uneDateDebut;
+		this.dateFin = uneDateFin;
+		this.duree = uneDuree;
+	}
+
 	//Accesseurs
 	public String getNomMateriel() {
 		return this.nomMateriel;
@@ -51,6 +63,30 @@ public class Materiel {
 
 	public void setLongueur(float longueur) {
 		this.longueur = longueur;
+	}
+	
+	public String getDateDebut() {
+		return dateDebut;
+	}
+
+	public void setDateDebut(String dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+	public String getDateFin() {
+		return dateFin;
+	}
+
+	public void setDateFin(String dateFin) {
+		this.dateFin = dateFin;
+	}
+
+	public float getDuree() {
+		return duree;
+	}
+
+	public void setDuree(float duree) {
+		this.duree = duree;
 	}
 
 	public String toString() {

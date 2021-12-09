@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 
 public class SuppMateriel extends JPanel implements ActionListener {
 
-    //Attributs privés
+    //Attributs privï¿½s
 
     //Frame
     private JFrame framePrincipale;
@@ -70,7 +70,7 @@ public class SuppMateriel extends JPanel implements ActionListener {
         this.lblNomMateriel = new JLabel("Entrez le nom :");
         this.lblInsertion = new JLabel("");
 
-        //Instanciation des entrées
+        //Instanciation des entrï¿½es
         this.jtfSuppression = new JTextField();
         this.jtfSuppression.setPreferredSize(new Dimension(150, 30));
 
@@ -93,7 +93,7 @@ public class SuppMateriel extends JPanel implements ActionListener {
         this.panelChamps.add(btnValider);
         this.panelChamps.add(lblInsertion);
 
-        //Toujours à la fin
+        //Toujours ï¿½ la fin
         this.framePrincipale.getRootPane().setDefaultButton(btnValider);
         this.framePrincipale.setAlwaysOnTop(true);
         this.framePrincipale.getContentPane().add(panelSuppMateriel);
@@ -107,13 +107,19 @@ public class SuppMateriel extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        //Si la source de l'évènement est le JButton appelé 
+        //Si la source de l'ï¿½vï¿½nement est le JButton appelï¿½ 
         if (e.getSource() == btnValider) {
             String nomMateriel = jtfSuppression.getText();
             if (Modele.suppressionMateriel(nomMateriel)) {
-                lblInsertion.setText("Suppression effectuée.");
+            	int idMat = Modele.recupIdMateriel(nomMateriel);
+            	if(Modele.suppressionEmpruntMateriel(idMat)) {
+            		lblInsertion.setText("Suppression effectuee.");
+            	}
+            	else {
+            		lblInsertion.setText("Probleme dans la suppression de l'emprunt.");
+            	}
             } else {
-                lblInsertion.setText("Suppression non effectuée.");
+                lblInsertion.setText("Suppression non effectuee.");
             }
         }
     }
