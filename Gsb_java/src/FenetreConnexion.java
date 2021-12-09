@@ -98,7 +98,7 @@ public class FenetreConnexion extends JFrame implements ActionListener {
 			}
 			if (Modele.coVisiteur(pseudo, mdp)) {
 				this.dispose();
-				new AccueilVisiteur().getMonPanelGlobal();
+				new AccueilVisiteur(pseudo).getMonPanelGlobal();
 
 			}
 			this.lblErreur.setText("Identifiant incorrect.");

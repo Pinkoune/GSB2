@@ -11,6 +11,9 @@ public class Vehicule {
 	private String modele;
 	private String marque;
 	private int nbPlaces;
+	private String dateDebut;
+	private String dateFin;
+	private float duree;
 
 	
 	//Constructeur
@@ -21,6 +24,16 @@ public class Vehicule {
 		this.nbPlaces = unNbPlaces;
 	}
 	
+	public Vehicule(String unImmat, String unModele, String uneMarque, int unNbPlaces, String uneDateDebut, String uneDateFin, float uneDuree) {
+		this.immat = unImmat;
+		this.modele = unModele;
+		this.marque = uneMarque;
+		this.nbPlaces = unNbPlaces;
+		this.dateDebut = uneDateDebut;
+		this.dateFin = uneDateFin;
+		this.duree = uneDuree;
+	}
+
 	//Accesseurs
 	public String getImmat() {
 		return immat;
@@ -52,6 +65,30 @@ public class Vehicule {
 
 	public void setNbPlaces(int nbPlaces) {
 		this.nbPlaces = nbPlaces;
+	}
+	
+	public String getDateDebut() {
+		return dateDebut;
+	}
+
+	public void setDateDebut(String dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+	public String getDateFin() {
+		return dateFin;
+	}
+
+	public void setDateFin(String dateFin) {
+		this.dateFin = dateFin;
+	}
+
+	public float getDuree() {
+		return duree;
+	}
+
+	public void setDuree(float duree) {
+		this.duree = duree;
 	}
 
 	public String toString() {
