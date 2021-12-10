@@ -148,7 +148,7 @@ public class AccueilVisiteur extends JPanel implements ActionListener {
         } else if (e.getSource().equals(btnSupprimerEmpruntMat)) {
 
             this.framePrincipale.getContentPane().removeAll();
-            this.framePrincipale.getContentPane().add(new EmpruntSuppMateriel().getMonPanelGlobal());
+            this.framePrincipale.getContentPane().add(new EmpruntSuppMateriel(pseudo).getMonPanelGlobal());
             this.framePrincipale.getContentPane().revalidate();
             this.framePrincipale.getContentPane().repaint();
 

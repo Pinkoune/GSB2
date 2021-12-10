@@ -41,7 +41,14 @@ public class EmpruntSuppMateriel extends JPanel implements ActionListener {
     //Bouton
     private JButton btnValider;
 
-    public EmpruntSuppMateriel() {
+    //JText du login visiteur
+    private JTextField jtfPseudo;
+
+    public EmpruntSuppMateriel(String unPseudo) {
+    	
+    	//Definition du pseudo
+    	this.jtfPseudo = new JTextField();
+    	this.jtfPseudo.setText(unPseudo);
 
         //Instanciation de la frame
         this.framePrincipale = new JFrame();
@@ -109,9 +116,15 @@ public class EmpruntSuppMateriel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //Si la source de l'evenement est le JButton appele 
         if (e.getSource() == btnValider) {
+        	
             String nomMateriel = jtfSuppression.getText();
             int idMat = Modele.recupIdMateriel(nomMateriel);
-            if(Modele.suppressionEmpruntMateriel(idMat)) {
+            
+            //Changement du nom Visiteur en idVisiteur
+            String nomVisiteur = this.jtfPseudo.getText();
+            String idVisiteur = Modele.recupIdVisiteur(nomVisiteur);
+            
+            if(Modele.suppressionEmpruntMateriel(idMat, idVisiteur)) {
             	boolean statut = Modele.majStatutMaterielLibre(idMat);
             	if(statut) {
             		lblInsertion.setText("Emprunt Retire.");

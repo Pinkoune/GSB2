@@ -37,11 +37,16 @@ public class SuppMateriel extends JPanel implements ActionListener {
 
     //JTextField
     private JTextField jtfSuppression;
+    private JTextField jtfPseudo;
 
     //Bouton
     private JButton btnValider;
 
-    public SuppMateriel() {
+    public SuppMateriel(String unPseudo) {
+    	
+    	//Definition du pseudo
+    	this.jtfPseudo = new JTextField();
+    	this.jtfPseudo.setText(unPseudo);
 
         //Instanciation de la frame
         this.framePrincipale = new JFrame();
@@ -109,10 +114,16 @@ public class SuppMateriel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //Si la source de l'�v�nement est le JButton appel� 
         if (e.getSource() == btnValider) {
+        	
             String nomMateriel = jtfSuppression.getText();
             int idMat = Modele.recupIdMateriel(nomMateriel);
+            
+            //Changement du nom Visiteur en idVisiteur
+            String nomVisiteur = this.jtfPseudo.getText();
+            String idVisiteur = Modele.recupIdVisiteur(nomVisiteur);
+            
             if (Modele.suppressionMateriel(nomMateriel)) {
-            	if(Modele.suppressionEmpruntMateriel(idMat)) {
+            	if(Modele.suppressionEmpruntMateriel(idMat, idVisiteur)) {
             		lblInsertion.setText("Suppression effectuee.");
             	}
             	else {
