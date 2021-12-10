@@ -65,7 +65,7 @@ public class AccueilResponsable extends JPanel implements ActionListener {
     	this.framePrincipale = new JFrame();
     	
     	//Definition de la frame
-        this.framePrincipale.setTitle("RaSio");
+        this.framePrincipale.setTitle("GSB");
         this.framePrincipale.setLocationRelativeTo(null);
         this.framePrincipale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.framePrincipale.setSize(700, 500);
@@ -78,27 +78,27 @@ public class AccueilResponsable extends JPanel implements ActionListener {
         this.monPanelGlobal.setLayout(new BorderLayout());
 
         //Creation des menus
-        this.menuMateriel = new JMenu("Menu du materiel");
-        this.menuVehicule = new JMenu("Menu des vehicules");
+        this.menuMateriel = new JMenu("Menu du matériel");
+        this.menuVehicule = new JMenu("Menu des véhicules");
 
         //Creation de la barre de menu
         JMenuBar jMenu = new JMenuBar();
 
         //Creation des elements du menu materiel
-        this.btnAffichageMateriel = new JMenuItem("Afficher les materiels");
-        this.btnAjouterMateriel = new JMenuItem("Ajouter un materiel");
-        this.btnSupprimerMateriel = new JMenuItem("Supprimer un materiel");
-        this.btnRechercherMateriel = new JMenuItem("Rechercher un materiel");
+        this.btnAffichageMateriel = new JMenuItem("Afficher les matériels");
+        this.btnAjouterMateriel = new JMenuItem("Ajouter un matériel");
+        this.btnSupprimerMateriel = new JMenuItem("Supprimer un matériel");
+        this.btnRechercherMateriel = new JMenuItem("Rechercher un matériel");
         this.menuMateriel.add(this.btnAffichageMateriel);
         this.menuMateriel.add(this.btnAjouterMateriel);
         this.menuMateriel.add(this.btnSupprimerMateriel);
         this.menuMateriel.add(this.btnRechercherMateriel);
 
         //Creation des elements du menu vehicule
-        this.btnAffichageVehicule = new JMenuItem("Afficher les vehicules");
-        this.btnAjouterVehicule = new JMenuItem("Ajouter un vehicule");
-        this.btnSupprimerVehicule = new JMenuItem("Supprimer un vehicule");
-        this.btnRechercherVehicule = new JMenuItem("Rechercher un vehicule");
+        this.btnAffichageVehicule = new JMenuItem("Afficher les véhicules");
+        this.btnAjouterVehicule = new JMenuItem("Ajouter un véhicule");
+        this.btnSupprimerVehicule = new JMenuItem("Supprimer un véhicule");
+        this.btnRechercherVehicule = new JMenuItem("Rechercher un véhicule");
         this.menuVehicule.add(this.btnAffichageVehicule);
         this.menuVehicule.add(this.btnAjouterVehicule);
         this.menuVehicule.add(this.btnSupprimerVehicule);
@@ -125,7 +125,7 @@ public class AccueilResponsable extends JPanel implements ActionListener {
 
         //Label affichant le message
         this.lblMessage = new JLabel();
-        this.lblMessage.setText("Resonsable du GSB");
+        this.lblMessage.setText("Résponsable du GSB");
 
         //Ajout des panels
         this.monPanel.add(lblMessage);

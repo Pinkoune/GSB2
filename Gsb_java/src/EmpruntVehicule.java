@@ -26,7 +26,7 @@ import org.jdatepicker.impl.SqlDateModel;
 
 public class EmpruntVehicule extends JPanel implements ActionListener {
 
-    //Attributs priv�s
+    //Attributs privés
 
     //Frame
     private JFrame framePrincipale;
@@ -88,11 +88,11 @@ public class EmpruntVehicule extends JPanel implements ActionListener {
         this.panelChamps.setLayout(new FlowLayout());
 
         //Instanciation des messages
-        this.lblMessage = new JLabel("Vehicule - Emprunt");
-        this.lblNomVehicule = new JLabel("Nom du Vehicule :");
-        this.lblDateDebut = new JLabel("Date du debut de l'emprunt :");
+        this.lblMessage = new JLabel("Véhicule - Emprunt");
+        this.lblNomVehicule = new JLabel("Nom du Véhicule :");
+        this.lblDateDebut = new JLabel("Date du début de l'emprunt :");
         this.lblDateFin = new JLabel("Date de fin de l'emprunt :");
-        this.lblDuree = new JLabel("Duree de l'emprunt :");
+        this.lblDuree = new JLabel("Durée de l'emprunt :");
         this.lblInsertion = new JLabel();
         this.lblInsertion.setText("");
         
@@ -200,13 +200,13 @@ public class EmpruntVehicule extends JPanel implements ActionListener {
             if (rep) {
             	boolean statut = Modele.majStatutVehicule(idVehicule);
             	if(statut) {
-            		lblInsertion.setText("Emprunt reussi");
+            		lblInsertion.setText("Emprunt réussi");
             	}
             	else {
-            		lblInsertion.setText("ERREUR, emprunt avec statut echoue");
+            		lblInsertion.setText("ERREUR, emprunt avec statut echoué");
             	}
             } else {
-                lblInsertion.setText("ERREUR, emprunt echoue");
+                lblInsertion.setText("ERREUR, emprunt echoué");
             }
         }
     }

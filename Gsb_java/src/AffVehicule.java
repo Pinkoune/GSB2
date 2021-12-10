@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class AffVehicule extends JPanel implements ActionListener {
 
-    //Attributs priv�s
+    //Attributs privés
 
     //Frame
     private JFrame framePrincipale;
@@ -54,7 +54,7 @@ public class AffVehicule extends JPanel implements ActionListener {
         this.panelTableau.setLayout(new FlowLayout());
 
         //Instanciation des messages
-        this.lblMessage = new JLabel("Les Vehicules");
+        this.lblMessage = new JLabel("Les Véhicules");
 
         //Couleur de la police
         this.lblMessage.setForeground(Color.white);
@@ -70,10 +70,10 @@ public class AffVehicule extends JPanel implements ActionListener {
             i++;
         }
         String[] title = {
-            "Immatriculation du Vehicule",
-            "Modele du Vehicule",
-            "Marque du Vehicule",
-            "Nombre de places du Vehicule",
+            "Immatriculation du Véhicule",
+            "Modèle du Véhicule",
+            "Marque du Véhicule",
+            "Nombre de places du Véhicule",
         };
         this.tableau = new JTable(data, title);
         this.tableau.setPreferredScrollableViewportSize(new Dimension(350, 300));
@@ -90,9 +90,9 @@ public class AffVehicule extends JPanel implements ActionListener {
 
         this.panelMessage.add(lblMessage);
 
-        //Toujours � la fin
+        //Toujours à la fin
         /**
-         * Rendu visible de l'app etc.. toujours � la fin de la classe
+         * Rendu visible de l'app etc.. toujours à la fin de la classe
          */
         this.framePrincipale.setAlwaysOnTop(true);
         this.panelVehicule.add(this.scrollPane);

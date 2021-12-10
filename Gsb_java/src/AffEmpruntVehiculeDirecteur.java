@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class AffEmpruntVehiculeDirecteur extends JPanel implements ActionListener {
 
-    //Attributs priv�s
+    //Attributs privés
 
     //Frame
     private JFrame framePrincipale;
@@ -54,7 +54,7 @@ public class AffEmpruntVehiculeDirecteur extends JPanel implements ActionListene
         this.panelTableau.setLayout(new FlowLayout());
 
         //Instanciation des messages
-        this.lblMessage = new JLabel("Les emprunts de vehicules");
+        this.lblMessage = new JLabel("Les emprunts de véhicules");
 
         //Couleur de la police
         this.lblMessage.setForeground(Color.white);
@@ -74,12 +74,12 @@ public class AffEmpruntVehiculeDirecteur extends JPanel implements ActionListene
             i++;
         }
         String[] title = {
-        	"Immatriculation du Vehicule",
-            "Modele du Vehicule",
-            "Marque du Vehicule",
+        	"Immatriculation du Véhicule",
+            "Modèle du Véhicule",
+            "Marque du Véhicule",
             "Date de l'emprunt",
             "Expiration de l'emprunt",
-            "Duree de l'emprunt",
+            "Durée de l'emprunt",
             "Nom de l'emprunteur",
             "Prenom de l'emprunteur",
         };
@@ -98,9 +98,9 @@ public class AffEmpruntVehiculeDirecteur extends JPanel implements ActionListene
 
         this.panelMessage.add(lblMessage);
 
-        //Toujours � la fin
+        //Toujours à la fin
         /**
-         * Rendu visible de l'app etc.. toujours � la fin de la classe
+         * Rendu visible de l'app etc.. toujours à la fin de la classe
          */
         this.framePrincipale.setAlwaysOnTop(true);
         this.panelMateriel.add(this.scrollPane);

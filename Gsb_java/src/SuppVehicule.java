@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 
 public class SuppVehicule extends JPanel implements ActionListener {
 
-    //Attributs privés
+    //Attributs privÃ©s
 
     //Frame
     private JFrame framePrincipale;
@@ -70,7 +70,7 @@ public class SuppVehicule extends JPanel implements ActionListener {
         this.lblNomVehicule = new JLabel("Entrez l'immatriculation :");
         this.lblInsertion = new JLabel("");
 
-        //Instanciation des entrées
+        //Instanciation des entrÃ©es
         this.jtfSuppression = new JTextField();
         this.jtfSuppression.setPreferredSize(new Dimension(150, 30));
 
@@ -93,7 +93,7 @@ public class SuppVehicule extends JPanel implements ActionListener {
         this.panelChamps.add(btnValider);
         this.panelChamps.add(lblInsertion);
 
-        //Toujours à la fin
+        //Toujours Ã  la fin
         this.framePrincipale.getRootPane().setDefaultButton(btnValider);
         this.framePrincipale.setAlwaysOnTop(true);
         this.framePrincipale.getContentPane().add(panelSuppVehicule);
@@ -107,13 +107,12 @@ public class SuppVehicule extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        //Si la source de l'évènement est le JButton appelé 
         if (e.getSource() == btnValider) {
             String immatVehicule = jtfSuppression.getText();
             if (Modele.suppressionVehicule(immatVehicule)) {
-                lblInsertion.setText("Suppression effectuée.");
+                lblInsertion.setText("Suppression effectuÃ©e.");
             } else {
-                lblInsertion.setText("Suppression non effectuée.");
+                lblInsertion.setText("Suppression non effectuÃ©e.");
             }
         }
     }

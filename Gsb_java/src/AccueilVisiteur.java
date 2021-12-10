@@ -76,15 +76,15 @@ public class AccueilVisiteur extends JPanel implements ActionListener {
         this.monPanelGlobal.setLayout(new BorderLayout());
 
         //Creation des menus
-        this.menuMateriel = new JMenu("Emprunt materiel");
-        this.menuVehicule = new JMenu("Emprunt vehicule");
+        this.menuMateriel = new JMenu("Emprunt matériel");
+        this.menuVehicule = new JMenu("Emprunt véhicule");
 
         //Creation de la barre de menu
         JMenuBar jMenu = new JMenuBar();
 
         //Creation des elements du menu materiel
         this.btnAffichageEmpruntMat = new JMenuItem("Voir mes emprunts");
-        this.btnEmpruntMateriel = new JMenuItem("Emprunter un materiel");
+        this.btnEmpruntMateriel = new JMenuItem("Emprunter un matériel");
         this.btnSupprimerEmpruntMat = new JMenuItem("Retirer un emprunt");
         this.menuMateriel.add(this.btnAffichageEmpruntMat);
         this.menuMateriel.add(this.btnEmpruntMateriel);
@@ -92,7 +92,7 @@ public class AccueilVisiteur extends JPanel implements ActionListener {
 
         //Creation des elements du menu vehicule
         this.btnAffichageEmpruntVehicule = new JMenuItem("Voir mes emprunts");
-        this.btnEmpruntVehicule = new JMenuItem("Emprunter un vehicule");
+        this.btnEmpruntVehicule = new JMenuItem("Emprunter un véhicule");
         this.btnSupprimerEmpruntVehicule = new JMenuItem("Retirer un emprunt");
         this.menuVehicule.add(this.btnAffichageEmpruntVehicule);
         this.menuVehicule.add(this.btnEmpruntVehicule);

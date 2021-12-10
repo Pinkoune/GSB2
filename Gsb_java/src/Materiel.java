@@ -1,5 +1,5 @@
 /**
- * Classe des Materiels
+ * Classe des Matériels
  * @author Jeremy
  *
  */
@@ -44,7 +44,7 @@ public class Materiel {
 		this.prenomVisiteur = unPrenomVisiteur;
 	}
 
-	//Accesseurs des materiels
+	//Accesseurs des matériels
 	
 	public String getNomMateriel() {
 		return this.nomMateriel;
@@ -78,7 +78,7 @@ public class Materiel {
 		this.longueur = longueur;
 	}
 	
-	//Accesseurs lies aux emprunts
+	//Accesseurs liés aux emprunts
 	
 	public String getDateDebut() {
 		return dateDebut;
@@ -104,7 +104,7 @@ public class Materiel {
 		this.duree = duree;
 	}
 	
-	//Accesseurs lies aux informations des visiteurs
+	//Accesseurs liés aux informations des visiteurs
 	
 	public String getNomVisiteur() {
 		return nomVisiteur;

@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 
 public class AjoutVehicule extends JPanel implements ActionListener {
 
-    //Attributs priv�s
+    //Attributs privés
 
     //Frame
     private JFrame framePrincipale;
@@ -69,15 +69,15 @@ public class AjoutVehicule extends JPanel implements ActionListener {
         this.panelChamps.setLayout(new FlowLayout());
 
         //Instanciation des messages
-        this.lblMessage = new JLabel("Vehicule - ajout");
-        this.lblImmatriculation = new JLabel("Immatriculation du Vehicule :");
-        this.lblModele = new JLabel("Modele du Vehicule :");
-        this.lblMarque = new JLabel("Marque du Vehicule :");
-        this.lblNbPLaces = new JLabel("Nombre de places du Vehicule :");
+        this.lblMessage = new JLabel("Véhicule - ajout");
+        this.lblImmatriculation = new JLabel("Immatriculation du Véhicule :");
+        this.lblModele = new JLabel("Modèle du Véhicule :");
+        this.lblMarque = new JLabel("Marque du Véhicule :");
+        this.lblNbPLaces = new JLabel("Nombre de places du Véhicule :");
         this.lblInsertion = new JLabel();
         this.lblInsertion.setText("");
 
-        //Instanciation des entr�es
+        //Instanciation des entrées
         this.jtfImmatriculation = new JTextField();
         this.jtfImmatriculation.setPreferredSize(new Dimension(150, 30));
         this.jtfModele = new JTextField();
@@ -119,7 +119,7 @@ public class AjoutVehicule extends JPanel implements ActionListener {
         this.panelChamps.add(btnValider);
         this.panelChamps.add(lblInsertion);
 
-        //Toujours � la fin
+        //Toujours à la fin
         this.framePrincipale.getRootPane().setDefaultButton(btnValider);
         this.framePrincipale.setAlwaysOnTop(true);
         this.framePrincipale.getContentPane().add(panelAjoutVehicule);
@@ -140,9 +140,9 @@ public class AjoutVehicule extends JPanel implements ActionListener {
             int nbPlacesV = Integer.parseInt(jtfNbPLaces.getText());
             boolean rep = Modele.ajoutVehicule(immatV, modeleV, marqueV, nbPlacesV);
             if (rep) {
-                lblInsertion.setText("Un nouveau Vehicule a �t� ajout�");
+                lblInsertion.setText("Un nouveau Véhicule a été ajouté");
             } else {
-                lblInsertion.setText("ERREUR, le Vehicule n'a pas pu �tre ajout�");
+                lblInsertion.setText("ERREUR, le Véhicule n'a pas pu être ajouté");
             }
         }
     }

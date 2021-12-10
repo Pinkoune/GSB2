@@ -16,7 +16,7 @@ public class Modele {
 	private static PreparedStatement ps;
 	
 	/**
-	 * Connexion a la base de donnees
+	 * Connexion a la base de données
 	 * @return
 	 */
 	
@@ -27,7 +27,7 @@ public class Modele {
 			connexion = DriverManager.getConnection("jdbc:mysql://localhost/gsb2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "root");
 			st = connexion.createStatement();
 		} catch (ClassNotFoundException e) {
-			System.out.println("Le driver n'as pu etre charge");
+			System.out.println("Le driver n'a pas pu etre chargé");
 			//	erreur.printStackTrace();
 		} catch (SQLException e) {
 			System.out.println("Erreur de la connexion a la bdd");
@@ -135,7 +135,7 @@ public class Modele {
             rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Erreur dans la recuperation de l'id d'un visiteur via le login");
+			System.out.println("Erreur dans la récuperation de l'id d'un visiteur via le login");
 			e.printStackTrace();
 		}
 		return idVisit;
@@ -167,7 +167,7 @@ public class Modele {
                 rep = true;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur d'insertion d'un materiel.");
+            System.out.println("Erreur d'insertion d'un matériel.");
             e.printStackTrace();
         }
         return rep;
@@ -187,7 +187,7 @@ public class Modele {
                 rep = true;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur de suppression d'un materiel.");
+            System.out.println("Erreur de suppression d'un matériel.");
             e.printStackTrace();
         }
         return rep;
@@ -219,7 +219,7 @@ public class Modele {
                 index = index + 1;
             }
             if (index < listeMateriel.size()) {
-                result = "\nVoici le materiel : " + listeMateriel.get(index).toString();
+                result = "\nVoici le matériel : " + listeMateriel.get(index).toString();
             }
             rs.close();
         } catch (SQLException e) {
@@ -244,7 +244,7 @@ public class Modele {
                 listeMateriel.add(new Materiel(nomMateriel, typeMateriel, largeur, longueur));
             }
         } catch (Exception e) {
-            System.out.println("Erreur dans l'affichage des materiels.");
+            System.out.println("Erreur dans l'affichage des matériels.");
             e.printStackTrace();
         }
         return listeMateriel;
@@ -287,7 +287,7 @@ public class Modele {
             rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Erreur de l'affichage du nombre de materiels");
+			System.out.println("Erreur de l'affichage du nombre de matériels");
 			e.printStackTrace();
 		}
 		return count;
@@ -307,7 +307,7 @@ public class Modele {
             rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Erreur dans la recuperation de l'id materiel via le nom");
+			System.out.println("Erreur dans la récuperation de l'id matériel via le nom");
 			e.printStackTrace();
 		}
 		return idMat;
@@ -332,7 +332,7 @@ public class Modele {
                 listeMateriel.add(new Materiel(nomMateriel, typeMateriel, largeur, longueur, dateDebut, dateFin, duree));
             }
         } catch (Exception e) {
-            System.out.println("Erreur dans l'affichage des emprunts materiels.");
+            System.out.println("Erreur dans l'affichage des emprunts matériels.");
             e.printStackTrace();
         }
         return listeMateriel;
@@ -355,7 +355,7 @@ public class Modele {
                 rep = true;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur d'insertion d'un materiel.");
+            System.out.println("Erreur d'insertion d'un matériel.");
             e.printStackTrace();
         }
         return rep;
@@ -374,7 +374,7 @@ public class Modele {
                 rep = true;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur de la mise a jour du statut.");
+            System.out.println("Erreur de la mise à jour du statut.");
             e.printStackTrace();
         }
         return rep;
@@ -392,7 +392,7 @@ public class Modele {
                 rep = true;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur de la mise a jour du statut.");
+            System.out.println("Erreur de la mise à jour du statut.");
             e.printStackTrace();
         }
         return rep;
@@ -411,7 +411,7 @@ public class Modele {
                 rep = true;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur de suppression d'un emprunt de materiel.");
+            System.out.println("Erreur de suppression d'un emprunt de matériel.");
             e.printStackTrace();
         }
         return rep;
@@ -443,7 +443,7 @@ public class Modele {
                 rep = true;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur d'insertion d'un vehicule.");
+            System.out.println("Erreur d'insertion d'un véhicule.");
             e.printStackTrace();
         }
         return rep;
@@ -463,7 +463,7 @@ public class Modele {
                 rep = true;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur de suppression d'un vehicule.");
+            System.out.println("Erreur de suppression d'un véhicule.");
             e.printStackTrace();
         }
         return rep;
@@ -473,7 +473,7 @@ public class Modele {
 	public static String rechercheVehicule(String unImmat) {
         //Attributs
         ArrayList < Vehicule > listeVehicule = new ArrayList < Vehicule > ();
-        String result = "\nCe materiel n'existe pas.";
+        String result = "\nCe matériel n'éxiste pas.";
         int index = 0;
         String req;
         //Selection
@@ -495,7 +495,7 @@ public class Modele {
                 index = index + 1;
             }
             if (index < listeVehicule.size()) {
-                result = "\nVoici le vehicule : " + listeVehicule.get(index).toString();
+                result = "\nVoici le véhicule : " + listeVehicule.get(index).toString();
             }
             rs.close();
         } catch (SQLException e) {
@@ -520,7 +520,7 @@ public class Modele {
                 listeVehicule.add(new Vehicule(immat, modele, marque, nbPlaces));
             }
         } catch (Exception e) {
-            System.out.println("Erreur dans l'affichage des vehicules.");
+            System.out.println("Erreur dans l'affichage des véhicules.");
             e.printStackTrace();
         }
         return listeVehicule;
@@ -563,7 +563,7 @@ public class Modele {
             rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Erreur de l'affichage du nombre de vehicules");
+			System.out.println("Erreur de l'affichage du nombre de véhicules");
 			e.printStackTrace();
 		}
 		return count;
@@ -583,7 +583,7 @@ public class Modele {
             rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Erreur dans la recuperation de l'id vehicule via l'immatriculation");
+			System.out.println("Erreur dans la récuperation de l'id véhicule via l'immatriculation");
 			e.printStackTrace();
 		}
 		return idMat;
@@ -608,7 +608,7 @@ public class Modele {
                 listeVehicule.add(new Vehicule(immat, modele, marque, nbPlace, dateDebut, dateFin, duree));
             }
         } catch (Exception e) {
-            System.out.println("Erreur dans l'affichage des materiels.");
+            System.out.println("Erreur dans l'affichage des matériels.");
             e.printStackTrace();
         }
         return listeVehicule;
@@ -631,7 +631,7 @@ public class Modele {
                 rep = true;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur d'insertion d'un vehicule.");
+            System.out.println("Erreur d'insertion d'un véhicule.");
             e.printStackTrace();
         }
         return rep;
@@ -650,7 +650,7 @@ public class Modele {
                 rep = true;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur de la mise a jour du statut.");
+            System.out.println("Erreur de la mise à jour du statut.");
             e.printStackTrace();
         }
         return rep;
@@ -669,7 +669,7 @@ public class Modele {
                 rep = true;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur de suppression d'un emprunt de vehicule.");
+            System.out.println("Erreur de suppression d'un emprunt de véhicule.");
             e.printStackTrace();
         }
         return rep;
@@ -687,7 +687,7 @@ public class Modele {
                 rep = true;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur de la mise a jour du statut.");
+            System.out.println("Erreur de la mise à jour du statut.");
             e.printStackTrace();
         }
         return rep;
@@ -705,7 +705,7 @@ public class Modele {
                 rep = true;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur de suppression d'un emprunt d'un vehicule.");
+            System.out.println("Erreur de suppression d'un emprunt d'un véhicule.");
             e.printStackTrace();
         }
         return rep;
@@ -735,7 +735,7 @@ public class Modele {
                 listeMateriel.add(new Materiel(nomMateriel, typeMateriel, dateDebut, dateFin, duree, nomVisiteur, prenomVisiteur));
             }
         } catch (Exception e) {
-            System.out.println("Erreur dans l'affichage des emprunts materiels directeur.");
+            System.out.println("Erreur dans l'affichage des emprunts matériels directeur.");
             e.printStackTrace();
         }
         return listeMateriel;
@@ -761,7 +761,7 @@ public class Modele {
 	                listeVehicule.add(new Vehicule(immat, modele, marque, dateDebut, dateFin, duree, nomVisiteur, prenomVisiteur));
 	            }
 	        } catch (Exception e) {
-	            System.out.println("Erreur dans l'affichage des emprunts vehicules directeur.");
+	            System.out.println("Erreur dans l'affichage des emprunts véhicules directeur.");
 	            e.printStackTrace();
 	        }
 	        return listeVehicule;
