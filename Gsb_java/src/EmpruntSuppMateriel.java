@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class SuppMateriel extends JPanel implements ActionListener {
+public class EmpruntSuppMateriel extends JPanel implements ActionListener {
 
     //Attributs priv�s
 
@@ -37,12 +37,14 @@ public class SuppMateriel extends JPanel implements ActionListener {
 
     //JTextField
     private JTextField jtfSuppression;
-    private JTextField jtfPseudo;
 
     //Bouton
     private JButton btnValider;
 
-    public SuppMateriel(String unPseudo) {
+    //JText du login visiteur
+    private JTextField jtfPseudo;
+
+    public EmpruntSuppMateriel(String unPseudo) {
     	
     	//Definition du pseudo
     	this.jtfPseudo = new JTextField();
@@ -71,7 +73,7 @@ public class SuppMateriel extends JPanel implements ActionListener {
         this.panelBtnQuitter.setLayout(new FlowLayout());
 
         //Instanciation des messages
-        this.lblMessage = new JLabel("Materiel - suppression");
+        this.lblMessage = new JLabel("Retirer un emprunt de materiel");
         this.lblNomMateriel = new JLabel("Entrez le nom :");
         this.lblInsertion = new JLabel("");
 
@@ -112,7 +114,7 @@ public class SuppMateriel extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        //Si la source de l'�v�nement est le JButton appel� 
+        //Si la source de l'evenement est le JButton appele 
         if (e.getSource() == btnValider) {
         	
             String nomMateriel = jtfSuppression.getText();
@@ -122,17 +124,18 @@ public class SuppMateriel extends JPanel implements ActionListener {
             String nomVisiteur = this.jtfPseudo.getText();
             String idVisiteur = Modele.recupIdVisiteur(nomVisiteur);
             
-            if (Modele.suppressionMateriel(nomMateriel)) {
-            	if(Modele.suppressionEmpruntMateriel(idMat, idVisiteur)) {
-            		lblInsertion.setText("Suppression effectuee.");
+            if(Modele.suppressionEmpruntMateriel(idMat, idVisiteur)) {
+            	boolean statut = Modele.majStatutMaterielLibre(idMat);
+            	if(statut) {
+            		lblInsertion.setText("Emprunt Retire.");
             	}
             	else {
-            		lblInsertion.setText("Probleme dans la suppression de l'emprunt.");
+            		lblInsertion.setText("Remise avec statut non effectue.");
             	}
-            } else {
-                lblInsertion.setText("Suppression non effectuee.");
             }
-        }
+            else {
+            	lblInsertion.setText("Remise non effectue.");
+            }
+        }   
     }
-
 }

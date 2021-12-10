@@ -89,7 +89,7 @@ public class FenetreConnexion extends JFrame implements ActionListener {
 			String mdp = jpassMdp.getText();
 			if (Modele.coResponsable(pseudo, mdp)) {
 				this.dispose();
-				new AccueilResponsable().getMonPanelGlobal();
+				new AccueilResponsable(pseudo).getMonPanelGlobal();
 
 			}
 			if (Modele.coDirecteur(pseudo, mdp)) {

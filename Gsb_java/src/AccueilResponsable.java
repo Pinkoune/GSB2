@@ -18,6 +18,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class AccueilResponsable extends JPanel implements ActionListener {
 
@@ -47,10 +48,18 @@ public class AccueilResponsable extends JPanel implements ActionListener {
     private JMenuItem btnRechercherVehicule;
     private JMenuItem btnAffichageVehicule;
 
+    //Label
     private JLabel lblMessage;
+    
+    //JText du login visiteur
+    private JTextField jtfPseudo;
 
     //CONSTRUCTEURS
-    public AccueilResponsable() {
+    public AccueilResponsable(String unPseudo) {
+    	
+    	//Definition du pseudo
+    	this.jtfPseudo = new JTextField();
+    	this.jtfPseudo.setText(unPseudo);
     	
     	//Instanciation de la frame
     	this.framePrincipale = new JFrame();
@@ -134,6 +143,8 @@ public class AccueilResponsable extends JPanel implements ActionListener {
 
     //Lance le changement de panel
     public void actionPerformed(ActionEvent e) {
+    	
+    	String pseudo = this.jtfPseudo.getText();
 
         //Boutons des Materiels
         if (e.getSource().equals(btnAjouterMateriel)) {
@@ -145,7 +156,7 @@ public class AccueilResponsable extends JPanel implements ActionListener {
         } else if (e.getSource().equals(btnSupprimerMateriel)) {
 
             this.framePrincipale.getContentPane().removeAll();
-            this.framePrincipale.getContentPane().add(new SuppMateriel().getMonPanelGlobal());
+            this.framePrincipale.getContentPane().add(new SuppMateriel(pseudo).getMonPanelGlobal());
             this.framePrincipale.getContentPane().revalidate();
             this.framePrincipale.getContentPane().repaint();
 

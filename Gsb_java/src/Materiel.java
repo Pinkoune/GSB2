@@ -13,6 +13,8 @@ public class Materiel {
 	private String dateDebut;
 	private String dateFin;
 	private float duree;
+	private String nomVisiteur;
+	private String prenomVisiteur;
 	
 	//Constructeur
 	public Materiel(String unNomMateriel, String unTypeMateriel, float uneLargeur, float uneLongueur) {
@@ -31,8 +33,19 @@ public class Materiel {
 		this.dateFin = uneDateFin;
 		this.duree = uneDuree;
 	}
+	
+	public Materiel(String unNomMateriel, String unTypeMateriel, String uneDateDebut, String uneDateFin, float uneDuree, String unNomVisiteur, String unPrenomVisiteur) {
+		this.nomMateriel = unNomMateriel;
+		this.typeMateriel = unTypeMateriel;
+		this.dateDebut = uneDateDebut;
+		this.dateFin = uneDateFin;
+		this.duree = uneDuree;
+		this.nomVisiteur = unNomVisiteur;
+		this.prenomVisiteur = unPrenomVisiteur;
+	}
 
-	//Accesseurs
+	//Accesseurs des materiels
+	
 	public String getNomMateriel() {
 		return this.nomMateriel;
 	}
@@ -65,6 +78,8 @@ public class Materiel {
 		this.longueur = longueur;
 	}
 	
+	//Accesseurs lies aux emprunts
+	
 	public String getDateDebut() {
 		return dateDebut;
 	}
@@ -88,7 +103,26 @@ public class Materiel {
 	public void setDuree(float duree) {
 		this.duree = duree;
 	}
+	
+	//Accesseurs lies aux informations des visiteurs
+	
+	public String getNomVisiteur() {
+		return nomVisiteur;
+	}
 
+	public void setNomVisiteur(String nomVisiteur) {
+		this.nomVisiteur = nomVisiteur;
+	}
+
+	public String getPrenomVisiteur() {
+		return prenomVisiteur;
+	}
+
+	public void setPrenomVisiteur(String prenomVisiteur) {
+		this.prenomVisiteur = prenomVisiteur;
+	}
+	
+	//toString
 	public String toString() {
 		return this.getNomMateriel() + " - " + this.getTypeMateriel()+ " - "  + this.getLargeur() + " cm de largeur - " + this.getLongueur() + " cm de longueur.";
 	}

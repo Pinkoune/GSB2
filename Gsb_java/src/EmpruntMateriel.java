@@ -10,6 +10,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,9 +19,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.jdatepicker.JDatePicker;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.SqlDateModel;
+
 public class EmpruntMateriel extends JPanel implements ActionListener {
 
-    //Attributs priv�s
+    //Attributs prive
 
     //Frame
     private JFrame framePrincipale;
@@ -50,6 +56,10 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
 
     //Bouton
     private JButton btnValider;
+    
+    //Calendrier pour les dates
+    private JDatePickerImpl dateDebut;
+    private JDatePickerImpl dateFin;
 
     //Constructeur
     public EmpruntMateriel(String unPseudo) {
@@ -80,7 +90,7 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
         //Instanciation des messages
         this.lblMessage = new JLabel("Materiel - Emprunt");
         this.lblNomMateriel = new JLabel("Nom du materiel :");
-        this.lblDateDebut = new JLabel("Date du début de l'emprunt :");
+        this.lblDateDebut = new JLabel("Date du debut de l'emprunt :");
         this.lblDateFin = new JLabel("Date de fin de l'emprunt :");
         this.lblDuree = new JLabel("Duree de l'emprunt :");
         this.lblInsertion = new JLabel();
@@ -114,6 +124,24 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
             i++;
         }
         
+        //DatePickerDebut
+        SqlDateModel model = new SqlDateModel();
+        Properties p = new Properties();
+        p.put("text.day", "Day");
+        p.put("text.month", "Month");
+        p.put("text.year", "Year");
+        JDatePanelImpl panel = new JDatePanelImpl(model,p);
+        this.dateDebut = new JDatePickerImpl(panel, new DateLabelFormatter());
+        
+        //DatePickerFin
+        SqlDateModel model2 = new SqlDateModel();
+        Properties p2 = new Properties();
+        p2.put("text.day", "Day");
+        p2.put("text.month", "Month");
+        p2.put("text.year", "Year");
+        JDatePanelImpl panel2 = new JDatePanelImpl(model2,p2);
+        this.dateFin = new JDatePickerImpl(panel2, new DateLabelFormatter());
+        
         //Instanciation de la liste de noms
         this.jcbNomMateriel = new JComboBox<String>();
         this.jcbNomMateriel = new JComboBox<String>(nomMateriel);
@@ -130,10 +158,10 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
         this.panelChamps.add(jcbNomMateriel);
         
         this.panelChamps.add(lblDateDebut);
-        this.panelChamps.add(jtfDateDebut);
-        
+        this.panelChamps.add(dateDebut);
+
         this.panelChamps.add(lblDateFin);
-        this.panelChamps.add(jtfDateFin);
+        this.panelChamps.add(dateFin);
         
         this.panelChamps.add(lblDuree);
         this.panelChamps.add(jtfDuree);
@@ -156,17 +184,21 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnValider) {
+        	//Changement du nom Materiel en idMateriel
             String nomMateriel = (String)jcbNomMateriel.getSelectedItem();
             int idMat = Modele.recupIdMateriel(nomMateriel);
             
+            //Changement du nom Visiteur en idVisiteur
             String nomVisiteur = this.jtfPseudo.getText();
             String idVisiteur = Modele.recupIdVisiteur(nomVisiteur);
             
-            String dateDebut = jtfDateDebut.getText();
-            String dateFin = jtfDateFin.getText();
+            //Recuperation des dates
+            java.sql.Date ptiteDateDebut = (java.sql.Date) EmpruntMateriel.this.dateDebut.getModel().getValue();
+            java.sql.Date ptiteDateFin = (java.sql.Date) EmpruntMateriel.this.dateFin.getModel().getValue();
+            
             float duree = Integer.parseInt(jtfDuree.getText());
             
-            boolean rep = Modele.ajoutEmpruntMateriel(idMat, dateDebut, dateFin, duree, idVisiteur);
+            boolean rep = Modele.ajoutEmpruntMateriel(idMat, ptiteDateDebut, ptiteDateFin, duree, idVisiteur);
             if (rep) {
             	boolean statut = Modele.majStatutMateriel(idMat);
             	if(statut) {

@@ -148,14 +148,16 @@ public class AccueilVisiteur extends JPanel implements ActionListener {
         } else if (e.getSource().equals(btnSupprimerEmpruntMat)) {
 
             this.framePrincipale.getContentPane().removeAll();
-            this.framePrincipale.getContentPane().add(new SuppMateriel().getMonPanelGlobal());
+            this.framePrincipale.getContentPane().add(new EmpruntSuppMateriel(pseudo).getMonPanelGlobal());
             this.framePrincipale.getContentPane().revalidate();
             this.framePrincipale.getContentPane().repaint();
 
         } else if (e.getSource().equals(btnAffichageEmpruntMat)) {
+        	String nomVisiteur = this.jtfPseudo.getText();
+            String idVisiteur = Modele.recupIdVisiteur(nomVisiteur);
             ArrayList < Materiel > listeMateriel;
             listeMateriel = new ArrayList < Materiel > ();
-            listeMateriel = Modele.affichageEmpruntMateriel();
+            listeMateriel = Modele.affichageEmpruntMateriel(idVisiteur);
             this.framePrincipale.getContentPane().removeAll();
             this.framePrincipale.getContentPane().add(new EmpruntAffichageMateriel(listeMateriel).getMonPanelGlobal());
             this.framePrincipale.getContentPane().revalidate();
@@ -172,14 +174,16 @@ public class AccueilVisiteur extends JPanel implements ActionListener {
         } else if (e.getSource().equals(btnSupprimerEmpruntVehicule)) {
 
             this.framePrincipale.getContentPane().removeAll();
-            this.framePrincipale.getContentPane().add(new SuppVehicule().getMonPanelGlobal());
+            this.framePrincipale.getContentPane().add(new EmpruntSuppVehicule().getMonPanelGlobal());
             this.framePrincipale.getContentPane().revalidate();
             this.framePrincipale.getContentPane().repaint();
 
         } else if (e.getSource().equals(btnAffichageEmpruntVehicule)) {
+        	String nomVisiteur = this.jtfPseudo.getText();
+            String idVisiteur = Modele.recupIdVisiteur(nomVisiteur);
             ArrayList < Vehicule > listeVehicule;
             listeVehicule = new ArrayList < Vehicule > ();
-            listeVehicule = Modele.affichageEmpruntVehicule();
+            listeVehicule = Modele.affichageEmpruntVehicule(idVisiteur);
             this.framePrincipale.getContentPane().removeAll();
             this.framePrincipale.getContentPane().add(new EmpruntAffichageVehicule(listeVehicule).getMonPanelGlobal());
             this.framePrincipale.getContentPane().revalidate();

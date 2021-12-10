@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -121,24 +122,24 @@ public class Modele {
 	}
 	
 	//Recuperation de l'id des materiels
-		public static String recupIdVisiteur(String unPseudoVisiteur) {
-			Modele.connexionBdd();
-			String idVisit = "";
-			try {
-				ps = connexion.prepareStatement("SELECT id FROM visiteur WHERE login = ? ;") ;
-				ps.setString(1, unPseudoVisiteur);
-				rs = ps.executeQuery();
-				while (rs.next()) {
-					idVisit = rs.getString("id");
-				}
-	            rs.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Erreur dans la recuperation de l'id d'un visiteur via le login");
-				e.printStackTrace();
+	public static String recupIdVisiteur(String unPseudoVisiteur) {
+		Modele.connexionBdd();
+		String idVisit = "";
+		try {
+			ps = connexion.prepareStatement("SELECT id FROM visiteur WHERE login = ? ;") ;
+			ps.setString(1, unPseudoVisiteur);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				idVisit = rs.getString("id");
 			}
-			return idVisit;
+            rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erreur dans la recuperation de l'id d'un visiteur via le login");
+			e.printStackTrace();
 		}
+		return idVisit;
+	}
 	
 	
 	/**
@@ -313,40 +314,40 @@ public class Modele {
 	}
 	
 	//Affichage des emprunts de materiel
-		public static ArrayList < Materiel > affichageEmpruntMateriel() {
-	        ArrayList < Materiel > listeMateriel;
-	        listeMateriel = new ArrayList < Materiel > ();
-	        try {
-	            st = connexion.createStatement();
-	            rs = st.executeQuery("SELECT * FROM empruntm, materiel WHERE empruntm.idMateriel = materiel.idMateriel;");
-	            while (rs.next()) {
-	                String nomMateriel = rs.getString("nomMateriel");
-	                String typeMateriel = rs.getString("typeMateriel");
-	                float largeur = rs.getFloat("largeur");
-	                float longueur = rs.getFloat("longueur");
-	                String dateDebut = rs.getString("dateDebut");
-	                String dateFin = rs.getString("dateFin");
-	                float duree = rs.getFloat("duree");
-	                
-	                listeMateriel.add(new Materiel(nomMateriel, typeMateriel, largeur, longueur, dateDebut, dateFin, duree));
-	            }
-	        } catch (Exception e) {
-	            System.out.println("Erreur dans l'affichage des emprunts materiels.");
-	            e.printStackTrace();
-	        }
-	        return listeMateriel;
-	    }
+	public static ArrayList < Materiel > affichageEmpruntMateriel(String unIdVisiteur) {
+        ArrayList < Materiel > listeMateriel;
+        listeMateriel = new ArrayList < Materiel > ();
+        try {
+            st = connexion.createStatement();
+            rs = st.executeQuery("SELECT * FROM empruntm, materiel WHERE empruntm.idMateriel = materiel.idMateriel AND idVisiteur = '"+ unIdVisiteur +"';");
+            while (rs.next()) {
+                String nomMateriel = rs.getString("nomMateriel");
+                String typeMateriel = rs.getString("typeMateriel");
+                float largeur = rs.getFloat("largeur");
+                float longueur = rs.getFloat("longueur");
+                String dateDebut = rs.getString("dateDebut");
+                String dateFin = rs.getString("dateFin");
+                float duree = rs.getFloat("duree");
+                
+                listeMateriel.add(new Materiel(nomMateriel, typeMateriel, largeur, longueur, dateDebut, dateFin, duree));
+            }
+        } catch (Exception e) {
+            System.out.println("Erreur dans l'affichage des emprunts materiels.");
+            e.printStackTrace();
+        }
+        return listeMateriel;
+    }
 	
 	//Ajout d'un materiel dans un emprunt
-	public static boolean ajoutEmpruntMateriel(int unIdMateriel, String uneDateDebut, String uneDateFin, float uneDuree, String unIdVisiteur) {
+	public static boolean ajoutEmpruntMateriel(int unIdMateriel, Date uneDateDebut, Date uneDateFin, float uneDuree, String unIdVisiteur) {
         //Insertion d'un materiel
         boolean rep = false;
         int result = 0;
         try {
             ps = connexion.prepareStatement("INSERT INTO empruntm (idMateriel, dateDebut, dateFin, duree, idVisiteur) VALUES (?,?,?,?,?);");
             ps.setInt(1, unIdMateriel);
-            ps.setString(2, uneDateDebut);
-            ps.setString(3, uneDateFin);
+            ps.setDate(2, uneDateDebut);
+            ps.setDate(3, uneDateFin);
             ps.setFloat(4, uneDuree);
             ps.setString(5, unIdVisiteur);
             result = ps.executeUpdate();
@@ -361,7 +362,7 @@ public class Modele {
 
     }
 	
-	//Mise a jour du statut du materiel
+	//Mise a jour du statut du materiel a occupe
 	public static boolean majStatutMateriel(int unIdMateriel) {
 		boolean rep = false;
         int result = 0;
@@ -379,24 +380,42 @@ public class Modele {
         return rep;
 	}
 	
-		//Suppression de l'emprunt du materiel
-		public static boolean suppressionEmpruntMateriel(int unIdMat) {
-	        //Suppression d'une course
-	        boolean rep = false;
-	        int result = 0;
-	        try {
-	            ps = connexion.prepareStatement("DELETE FROM materiel WHERE idMateriel = ?;");
-	            ps.setInt(1, unIdMat);
-	            result = ps.executeUpdate();
-	            if (result == 1) {
-	                rep = true;
-	            }
-	        } catch (SQLException e) {
-	            System.out.println("Erreur de suppression d'un emprunt de materiel.");
-	            e.printStackTrace();
-	        }
-	        return rep;
-	    }
+	//Mise a jour du statut du materiel non occupe
+	public static boolean majStatutMaterielLibre(int unIdMateriel) {
+		boolean rep = false;
+        int result = 0;
+        try {
+            ps = connexion.prepareStatement("UPDATE materiel SET statut = null WHERE idMateriel = ?");
+            ps.setInt(1, unIdMateriel);
+            result = ps.executeUpdate();
+            if (result == 1) {
+                rep = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur de la mise a jour du statut.");
+            e.printStackTrace();
+        }
+        return rep;
+	}
+	
+	//Suppression de l'emprunt du materiel
+	public static boolean suppressionEmpruntMateriel(int unIdMat, String unIdVisiteur) {
+        boolean rep = false;
+        int result = 0;
+        try {
+            ps = connexion.prepareStatement("DELETE FROM empruntm WHERE idMateriel = ? AND idVisiteur = ?;");
+            ps.setInt(1, unIdMat);
+            ps.setString(2, unIdVisiteur);
+            result = ps.executeUpdate();
+            if (result == 1) {
+                rep = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur de suppression d'un emprunt de materiel.");
+            e.printStackTrace();
+        }
+        return rep;
+    }
 	
 	/**
 	 * Requetes des vehicules
@@ -432,13 +451,13 @@ public class Modele {
     }
 		
 	//Suppression du vehicule
-	public static boolean suppressionVehicule(String unImmat) {
+	public static boolean suppressionVehicule(String unModele) {
         //Suppression d'une course
         boolean rep = false;
         int result = 0;
         try {
-            ps = connexion.prepareStatement("DELETE FROM vehicule WHERE immat = ?;");
-            ps.setString(1, unImmat);
+            ps = connexion.prepareStatement("DELETE FROM vehicule WHERE modele = ?;");
+            ps.setString(1, unModele);
             result = ps.executeUpdate();
             if (result == 1) {
                 rep = true;
@@ -571,40 +590,40 @@ public class Modele {
 	}
 	
 	//Affichage des emprunts de materiel
-		public static ArrayList < Vehicule > affichageEmpruntVehicule() {
-	        ArrayList < Vehicule > listeVehicule;
-	        listeVehicule = new ArrayList < Vehicule > ();
-	        try {
-	            st = connexion.createStatement();
-	            rs = st.executeQuery("SELECT * FROM empruntv, vehicule WHERE empruntv.idVehicule = vehicule.idVehicule;");
-	            while (rs.next()) {
-	                String immat = rs.getString("immat");
-	                String modele = rs.getString("modele");
-	                String marque = rs.getString("marque");
-	                int nbPlace = rs.getInt("nbPlace");
-	                String dateDebut = rs.getString("dateDebut");
-	                String dateFin = rs.getString("dateFin");
-	                float duree = rs.getFloat("duree");
-	                
-	                listeVehicule.add(new Vehicule(immat, modele, marque, nbPlace, dateDebut, dateFin, duree));
-	            }
-	        } catch (Exception e) {
-	            System.out.println("Erreur dans l'affichage des materiels.");
-	            e.printStackTrace();
-	        }
-	        return listeVehicule;
-	    }
+	public static ArrayList < Vehicule > affichageEmpruntVehicule(String unIdVisiteur) {
+        ArrayList < Vehicule > listeVehicule;
+        listeVehicule = new ArrayList < Vehicule > ();
+        try {
+            st = connexion.createStatement();
+            rs = st.executeQuery("SELECT * FROM empruntv, vehicule WHERE empruntv.idVehicule = vehicule.idVehicule AND idVisiteur = '"+ unIdVisiteur +"';");
+            while (rs.next()) {
+                String immat = rs.getString("immat");
+                String modele = rs.getString("modele");
+                String marque = rs.getString("marque");
+                int nbPlace = rs.getInt("nbPlace");
+                String dateDebut = rs.getString("dateDebut");
+                String dateFin = rs.getString("dateFin");
+                float duree = rs.getFloat("duree");
+                
+                listeVehicule.add(new Vehicule(immat, modele, marque, nbPlace, dateDebut, dateFin, duree));
+            }
+        } catch (Exception e) {
+            System.out.println("Erreur dans l'affichage des materiels.");
+            e.printStackTrace();
+        }
+        return listeVehicule;
+    }
 	
 	//Ajout d'un materiel dans un emprunt
-	public static boolean ajoutEmpruntVehicule(int unIdVehicule, String uneDateDebut, String uneDateFin, float uneDuree, String unIdVisiteur) {
+	public static boolean ajoutEmpruntVehicule(int unIdVehicule, Date uneDateDebut, Date uneDateFin, float uneDuree, String unIdVisiteur) {
         //Insertion d'un materiel
         boolean rep = false;
         int result = 0;
         try {
             ps = connexion.prepareStatement("INSERT INTO empruntv (idVehicule, dateDebut, dateFin, duree, idVisiteur) VALUES (?,?,?,?,?);");
             ps.setInt(1, unIdVehicule);
-            ps.setString(2, uneDateDebut);
-            ps.setString(3, uneDateFin);
+            ps.setDate(2, uneDateDebut);
+            ps.setDate(3, uneDateFin);
             ps.setFloat(4, uneDuree);
             ps.setString(5, unIdVisiteur);
             result = ps.executeUpdate();
@@ -637,23 +656,115 @@ public class Modele {
         return rep;
 	}
 	
-		//Suppression de l'emprunt du materiel
-		public static boolean suppressionEmpruntVehicule(int unIdMat) {
-	        //Suppression d'une course
-	        boolean rep = false;
-	        int result = 0;
+	//Suppression de l'emprunt du materiel
+	public static boolean suppressionEmpruntVehicule(int unIdVehicule) {
+        //Suppression d'une course
+        boolean rep = false;
+        int result = 0;
+        try {
+            ps = connexion.prepareStatement("DELETE FROM empruntv WHERE idVehicule = ?;");
+            ps.setInt(1, unIdVehicule);
+            result = ps.executeUpdate();
+            if (result == 1) {
+                rep = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur de suppression d'un emprunt de vehicule.");
+            e.printStackTrace();
+        }
+        return rep;
+    }
+	
+	//Mise a jour du statut du materiel non occupe
+	public static boolean majStatutVehiculeLibre(int unIdVehicule) {
+		boolean rep = false;
+        int result = 0;
+        try {
+            ps = connexion.prepareStatement("UPDATE vehicule SET statut = null WHERE idVehicule = ?");
+            ps.setInt(1, unIdVehicule);
+            result = ps.executeUpdate();
+            if (result == 1) {
+                rep = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur de la mise a jour du statut.");
+            e.printStackTrace();
+        }
+        return rep;
+	}
+
+	//Suppression de l'emprunt du materiel
+	public static boolean suppressionVehiculeMateriel(int unIdVehicule) {
+        boolean rep = false;
+        int result = 0;
+        try {
+            ps = connexion.prepareStatement("DELETE FROM empruntv WHERE idVehicule = ?;");
+            ps.setInt(1, unIdVehicule);
+            result = ps.executeUpdate();
+            if (result == 1) {
+                rep = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur de suppression d'un emprunt d'un vehicule.");
+            e.printStackTrace();
+        }
+        return rep;
+    }
+	
+	/*
+	 * Requetes requises pour le directeur
+	 * @return
+	 */
+	
+	//Affichage des emprunts de materiel + nom et prenom
+	public static ArrayList < Materiel > affichageEmpruntMaterielDirec() {
+        ArrayList < Materiel > listeMateriel;
+        listeMateriel = new ArrayList < Materiel > ();
+        try {
+            st = connexion.createStatement();
+            rs = st.executeQuery("SELECT * FROM empruntm, materiel, visiteur WHERE empruntm.idMateriel = materiel.idMateriel AND empruntm.idVisiteur = visiteur.id;");
+            while (rs.next()) {
+                String nomMateriel = rs.getString("nomMateriel");
+                String typeMateriel = rs.getString("typeMateriel");
+                String dateDebut = rs.getString("dateDebut");
+                String dateFin = rs.getString("dateFin");
+                float duree = rs.getFloat("duree");
+                String nomVisiteur = rs.getString("nom");
+                String prenomVisiteur = rs.getNString("prenom");
+                
+                listeMateriel.add(new Materiel(nomMateriel, typeMateriel, dateDebut, dateFin, duree, nomVisiteur, prenomVisiteur));
+            }
+        } catch (Exception e) {
+            System.out.println("Erreur dans l'affichage des emprunts materiels directeur.");
+            e.printStackTrace();
+        }
+        return listeMateriel;
+    }
+	
+	//Affichage des emprunts de vehicule + nom et prenom
+		public static ArrayList < Vehicule > affichageEmpruntVehiculeDirec() {
+	        ArrayList < Vehicule > listeVehicule;
+	        listeVehicule = new ArrayList < Vehicule > ();
 	        try {
-	            ps = connexion.prepareStatement("DELETE FROM vehicule WHERE idVehicule = ?;");
-	            ps.setInt(1, unIdMat);
-	            result = ps.executeUpdate();
-	            if (result == 1) {
-	                rep = true;
+	            st = connexion.createStatement();
+	            rs = st.executeQuery("SELECT * FROM empruntv, vehicule, visiteur WHERE empruntv.idVehicule = vehicule.idVehicule AND empruntv.idVisiteur = visiteur.id;");
+	            while (rs.next()) {
+	                String immat = rs.getString("immat");
+	                String modele = rs.getString("modele");
+	                String marque = rs.getString("marque");
+	                String dateDebut = rs.getString("dateDebut");
+	                String dateFin = rs.getString("dateFin");
+	                float duree = rs.getFloat("duree");
+	                String nomVisiteur = rs.getString("nom");
+	                String prenomVisiteur = rs.getString("prenom");
+	                
+	                listeVehicule.add(new Vehicule(immat, modele, marque, dateDebut, dateFin, duree, nomVisiteur, prenomVisiteur));
 	            }
-	        } catch (SQLException e) {
-	            System.out.println("Erreur de suppression d'un emprunt de vehicule.");
+	        } catch (Exception e) {
+	            System.out.println("Erreur dans l'affichage des emprunts vehicules directeur.");
 	            e.printStackTrace();
 	        }
-	        return rep;
+	        return listeVehicule;
 	    }
-	
+
 }
