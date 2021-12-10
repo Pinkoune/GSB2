@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 
 public class SuppMateriel extends JPanel implements ActionListener {
 
-    //Attributs priv�s
+    //Attributs privés
 
     //Frame
     private JFrame framePrincipale;
@@ -75,7 +75,7 @@ public class SuppMateriel extends JPanel implements ActionListener {
         this.lblNomMateriel = new JLabel("Entrez le nom :");
         this.lblInsertion = new JLabel("");
 
-        //Instanciation des entr�es
+        //Instanciation des entrées
         this.jtfSuppression = new JTextField();
         this.jtfSuppression.setPreferredSize(new Dimension(150, 30));
 
@@ -98,7 +98,7 @@ public class SuppMateriel extends JPanel implements ActionListener {
         this.panelChamps.add(btnValider);
         this.panelChamps.add(lblInsertion);
 
-        //Toujours � la fin
+        //Toujours à la fin
         this.framePrincipale.getRootPane().setDefaultButton(btnValider);
         this.framePrincipale.setAlwaysOnTop(true);
         this.framePrincipale.getContentPane().add(panelSuppMateriel);
@@ -112,7 +112,7 @@ public class SuppMateriel extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        //Si la source de l'�v�nement est le JButton appel� 
+        //Si la source de l'événement est le JButton appelé
         if (e.getSource() == btnValider) {
         	
             String nomMateriel = jtfSuppression.getText();
@@ -124,13 +124,13 @@ public class SuppMateriel extends JPanel implements ActionListener {
             
             if (Modele.suppressionMateriel(nomMateriel)) {
             	if(Modele.suppressionEmpruntMateriel(idMat, idVisiteur)) {
-            		lblInsertion.setText("Suppression effectuee.");
+            		lblInsertion.setText("Suppression effectuée.");
             	}
             	else {
-            		lblInsertion.setText("Probleme dans la suppression de l'emprunt.");
+            		lblInsertion.setText("Problème dans la suppression de l'emprunt.");
             	}
             } else {
-                lblInsertion.setText("Suppression non effectuee.");
+                lblInsertion.setText("Suppression non effectuée.");
             }
         }
     }

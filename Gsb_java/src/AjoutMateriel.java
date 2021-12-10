@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 
 public class AjoutMateriel extends JPanel implements ActionListener {
 
-    //Attributs privÈs
+    //Attributs priv√©s
 
     //Frame
     private JFrame framePrincipale;
@@ -69,15 +69,15 @@ public class AjoutMateriel extends JPanel implements ActionListener {
         this.panelChamps.setLayout(new FlowLayout());
 
         //Instanciation des messages
-        this.lblMessage = new JLabel("Materiel - ajout");
-        this.lblNomMateriel = new JLabel("Nom du materiel :");
-        this.lblTypeMateriel = new JLabel("Type du materiel :");
-        this.lblLargeurMateriel = new JLabel("Largeur du materiel :");
-        this.lblLongueurMateriel = new JLabel("Longueur du materiel :");
+        this.lblMessage = new JLabel("Mat√©riel - ajout");
+        this.lblNomMateriel = new JLabel("Nom du mat√©riel :");
+        this.lblTypeMateriel = new JLabel("Type du mat√©riel :");
+        this.lblLargeurMateriel = new JLabel("Largeur du mat√©riel :");
+        this.lblLongueurMateriel = new JLabel("Longueur du mat√©riel :");
         this.lblInsertion = new JLabel();
         this.lblInsertion.setText("");
 
-        //Instanciation des entrÈes
+        //Instanciation des entr√©es
         this.jtfNomMateriel = new JTextField();
         this.jtfNomMateriel.setPreferredSize(new Dimension(150, 30));
         this.jtfTypeMateriel = new JTextField();
@@ -119,7 +119,7 @@ public class AjoutMateriel extends JPanel implements ActionListener {
         this.panelChamps.add(btnValider);
         this.panelChamps.add(lblInsertion);
 
-        //Toujours ‡ la fin
+        //Toujours √† la fin
         this.framePrincipale.getRootPane().setDefaultButton(btnValider);
         this.framePrincipale.setAlwaysOnTop(true);
         this.framePrincipale.getContentPane().add(panelAjoutMateriel);
@@ -140,9 +140,9 @@ public class AjoutMateriel extends JPanel implements ActionListener {
             float longueurMateriel = Integer.parseInt(jtfLongueurMateriel.getText());
             boolean rep = Modele.ajoutMateriel(nomMateriel, typeMateriel, largeurMateriel, longueurMateriel);
             if (rep) {
-                lblInsertion.setText("Un nouveau materiel a ÈtÈ ajoutÈ");
+                lblInsertion.setText("Un nouveau mat√©riel a √©t√© ajout√©");
             } else {
-                lblInsertion.setText("ERREUR, le materiel n'a pas pu Ítre ajoutÈ");
+                lblInsertion.setText("ERREUR, le mat√©0riel n'a pas pu √™tre ajout√©");
             }
         }
     }

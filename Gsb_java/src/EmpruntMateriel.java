@@ -26,7 +26,7 @@ import org.jdatepicker.impl.SqlDateModel;
 
 public class EmpruntMateriel extends JPanel implements ActionListener {
 
-    //Attributs prive
+    //Attributs privés
 
     //Frame
     private JFrame framePrincipale;
@@ -88,11 +88,11 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
         this.panelChamps.setLayout(new FlowLayout());
 
         //Instanciation des messages
-        this.lblMessage = new JLabel("Materiel - Emprunt");
-        this.lblNomMateriel = new JLabel("Nom du materiel :");
+        this.lblMessage = new JLabel("Matériel - Emprunt");
+        this.lblNomMateriel = new JLabel("Nom du matériel :");
         this.lblDateDebut = new JLabel("Date du debut de l'emprunt :");
         this.lblDateFin = new JLabel("Date de fin de l'emprunt :");
-        this.lblDuree = new JLabel("Duree de l'emprunt :");
+        this.lblDuree = new JLabel("Durée de l'emprunt :");
         this.lblInsertion = new JLabel();
         this.lblInsertion.setText("");
         
@@ -202,13 +202,13 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
             if (rep) {
             	boolean statut = Modele.majStatutMateriel(idMat);
             	if(statut) {
-            		lblInsertion.setText("Emprunt reussi");
+            		lblInsertion.setText("Emprunt réussi");
             	}
             	else {
-            		lblInsertion.setText("ERREUR, emprunt avec statut echoue");
+            		lblInsertion.setText("ERREUR, emprunt avec statut echoué");
             	}
             } else {
-                lblInsertion.setText("ERREUR, emprunt echoue");
+                lblInsertion.setText("ERREUR, emprunt echoué");
             }
         }
     }

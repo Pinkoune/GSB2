@@ -1,12 +1,12 @@
 /**
- * Classe des Vehicules
+ * Classe des Véhicules
  * @author Jeremy
  *
  */
 
 public class Vehicule {
 	
-	//attributs prives
+	//attributs privés
 	private String immat;
 	private String modele;
 	private String marque;
@@ -47,7 +47,7 @@ public class Vehicule {
 		this.prenomVisiteur = unPrenomVisiteur;
 	}
 
-	//Accesseurs des vehicules
+	//Accesseurs des véhicules
 	
 	public String getImmat() {
 		return immat;
@@ -81,7 +81,7 @@ public class Vehicule {
 		this.nbPlaces = nbPlaces;
 	}
 	
-	//Accesseurs lies aux emprunts
+	//Accesseurs liés aux emprunts
 	
 	public String getDateDebut() {
 		return dateDebut;
@@ -107,7 +107,7 @@ public class Vehicule {
 		this.duree = duree;
 	}
 	
-	//Accesseurs lies aux informations des visiteurs
+	//Accesseurs liés aux informations des visiteurs
 	
 	public String getNomVisiteur() {
 		return nomVisiteur;

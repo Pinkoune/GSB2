@@ -51,7 +51,7 @@ public class FenetreConnexion extends JFrame implements ActionListener {
 		this.jpassMdp = new JPasswordField("");
 		this.lblErreur = new JLabel("");
 
-		// Cr�ation des box pour entr�e les info
+		// Création des box pour entrer les infos
 		this.jtextIdentifiant.setPreferredSize(new Dimension(150,30));
 		this.jpassMdp.setPreferredSize(new Dimension(150, 30));
 
@@ -68,7 +68,7 @@ public class FenetreConnexion extends JFrame implements ActionListener {
 
 		this.panelErreur.add(lblErreur);
 
-		//Ajout de l'�l�ment titre au panel titre
+		//Ajout de l'élément titre au panel titre
 		this.getRootPane().setDefaultButton(btnConnexion);
 		this.setAlwaysOnTop(true);
 		this.monPanelGlobal.add(monPanel, BorderLayout.NORTH);

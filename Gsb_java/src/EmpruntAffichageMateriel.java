@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class EmpruntAffichageMateriel extends JPanel implements ActionListener {
 
-    //Attributs priv�s
+    //Attributs privés
 
     //Frame
     private JFrame framePrincipale;
@@ -54,7 +54,7 @@ public class EmpruntAffichageMateriel extends JPanel implements ActionListener {
         this.panelTableau.setLayout(new FlowLayout());
 
         //Instanciation des messages
-        this.lblMessage = new JLabel("Les emprunts de materiels");
+        this.lblMessage = new JLabel("Les emprunts de matériels");
 
         //Couleur de la police
         this.lblMessage.setForeground(Color.white);
@@ -73,13 +73,13 @@ public class EmpruntAffichageMateriel extends JPanel implements ActionListener {
             i++;
         }
         String[] title = {
-            "Nom du materiel",
-            "Type du materiel",
-            "Largeur du materiel",
-            "Longueur du materiel",
+            "Nom du matériel",
+            "Type du matériel",
+            "Largeur du matériel",
+            "Longueur du matériel",
             "Date de l'emprunt",
             "Expiration de l'emprunt",
-            "Duree de l'emprunt",
+            "Durée de l'emprunt",
         };
         this.tableau = new JTable(data, title);
         this.tableau.setPreferredScrollableViewportSize(new Dimension(350, 300));
@@ -96,9 +96,9 @@ public class EmpruntAffichageMateriel extends JPanel implements ActionListener {
 
         this.panelMessage.add(lblMessage);
 
-        //Toujours � la fin
+        //Toujours à la fin
         /**
-         * Rendu visible de l'app etc.. toujours � la fin de la classe
+         * Rendu visible de l'app etc.. toujours à la fin de la classe
          */
         this.framePrincipale.setAlwaysOnTop(true);
         this.panelMateriel.add(this.scrollPane);

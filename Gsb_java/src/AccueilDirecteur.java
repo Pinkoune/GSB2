@@ -67,21 +67,21 @@ public class AccueilDirecteur extends JPanel implements ActionListener {
         this.monPanelGlobal.setLayout(new BorderLayout());
 
         //Creation des menus
-        this.menuMateriel = new JMenu("Gestion des materiels");
-        this.menuVehicule = new JMenu("Gestion des vehicules");
+        this.menuMateriel = new JMenu("Gestion des matériels");
+        this.menuVehicule = new JMenu("Gestion des véhicules");
 
         //Creation de la barre de menu
         JMenuBar jMenu = new JMenuBar();
 
         //Creation des elements du menu materiel
-        this.btnAffichageEmpruntMat = new JMenuItem("Voir les emprunts de materiel");
-        this.btnAffichageMateriel = new JMenuItem("Voir les materiels disponibles");
+        this.btnAffichageEmpruntMat = new JMenuItem("Voir les emprunts de matériel");
+        this.btnAffichageMateriel = new JMenuItem("Voir les matériels disponibles");
         this.menuMateriel.add(this.btnAffichageEmpruntMat);
         this.menuMateriel.add(this.btnAffichageMateriel);
 
         //Creation des elements du menu vehicule
-        this.btnAffichageEmpruntVehicule = new JMenuItem("Voir les emprunts de vehicule");
-        this.btnAffichageVehicule = new JMenuItem("Voir les vehicules disponibles");
+        this.btnAffichageEmpruntVehicule = new JMenuItem("Voir les emprunts de véhicule");
+        this.btnAffichageVehicule = new JMenuItem("Voir les véhicules disponibles");
         this.menuVehicule.add(this.btnAffichageEmpruntVehicule);
         this.menuVehicule.add(this.btnAffichageVehicule);
 

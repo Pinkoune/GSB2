@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 
 public class EmpruntSuppMateriel extends JPanel implements ActionListener {
 
-    //Attributs priv�s
+    //Attributs privés
 
     //Frame
     private JFrame framePrincipale;
@@ -73,11 +73,11 @@ public class EmpruntSuppMateriel extends JPanel implements ActionListener {
         this.panelBtnQuitter.setLayout(new FlowLayout());
 
         //Instanciation des messages
-        this.lblMessage = new JLabel("Retirer un emprunt de materiel");
+        this.lblMessage = new JLabel("Retirer un emprunt de matériel");
         this.lblNomMateriel = new JLabel("Entrez le nom :");
         this.lblInsertion = new JLabel("");
 
-        //Instanciation des entr�es
+        //Instanciation des entrées
         this.jtfSuppression = new JTextField();
         this.jtfSuppression.setPreferredSize(new Dimension(150, 30));
 
@@ -100,7 +100,7 @@ public class EmpruntSuppMateriel extends JPanel implements ActionListener {
         this.panelChamps.add(btnValider);
         this.panelChamps.add(lblInsertion);
 
-        //Toujours � la fin
+        //Toujours à la fin
         this.framePrincipale.getRootPane().setDefaultButton(btnValider);
         this.framePrincipale.setAlwaysOnTop(true);
         this.framePrincipale.getContentPane().add(panelSuppMateriel);
@@ -127,14 +127,14 @@ public class EmpruntSuppMateriel extends JPanel implements ActionListener {
             if(Modele.suppressionEmpruntMateriel(idMat, idVisiteur)) {
             	boolean statut = Modele.majStatutMaterielLibre(idMat);
             	if(statut) {
-            		lblInsertion.setText("Emprunt Retire.");
+            		lblInsertion.setText("Emprunt Retiré.");
             	}
             	else {
-            		lblInsertion.setText("Remise avec statut non effectue.");
+            		lblInsertion.setText("Remise avec statut non effectué.");
             	}
             }
             else {
-            	lblInsertion.setText("Remise non effectue.");
+            	lblInsertion.setText("Remise non effectué.");
             }
         }   
     }

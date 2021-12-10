@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 public class RechercheMateriel extends JPanel implements ActionListener {
 
-    //Attributs priv�s
+    //Attributs privés
 
     //Frame
     private JFrame framePrincipale;
@@ -51,8 +51,8 @@ public class RechercheMateriel extends JPanel implements ActionListener {
         this.monPanelGlobal.setLayout(new BorderLayout());
 
         //Instanciation des messages
-        this.lblMessage = new JLabel("Materiel - recherche");
-        this.lblSupp1 = new JLabel("Entrez le nom du materiel : ");
+        this.lblMessage = new JLabel("Matériel - recherche");
+        this.lblSupp1 = new JLabel("Entrez le nom du matériel : ");
         this.jtfSupp1 = new JTextField("");
         this.jtfSupp1.setPreferredSize(new Dimension(150, 30));
         this.lblInsertion = new JLabel();
@@ -82,7 +82,7 @@ public class RechercheMateriel extends JPanel implements ActionListener {
         this.panelMil.add(btnValider1);
         this.panelMil.add(lblInsertion);
 
-        //Toujours � la fin
+        //Toujours à la fin
         this.framePrincipale.getRootPane().setDefaultButton(btnValider1);
         this.framePrincipale.setAlwaysOnTop(true);
         this.framePrincipale.getContentPane().add(monPanel);
