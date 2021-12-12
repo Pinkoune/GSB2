@@ -60,8 +60,8 @@ public class AjoutMateriel extends JPanel implements ActionListener {
 
         //Background des panels
         this.panelAjoutMateriel.setBackground(Color.white);
-        this.panelMessage.setBackground(Color.blue);
-        this.panelChamps.setBackground(Color.white);
+        this.panelMessage.setBackground(new Color(67, 87, 186));
+        this.panelChamps.setBackground(new Color(22, 38, 119));
 
         //Disposition des panels
         this.panelAjoutMateriel.setLayout(new BorderLayout());
@@ -89,14 +89,18 @@ public class AjoutMateriel extends JPanel implements ActionListener {
 
         //Couleur de la police
         this.lblMessage.setForeground(Color.white);
-        this.lblNomMateriel.setForeground(Color.black);
-        this.lblTypeMateriel.setForeground(Color.black);
-        this.lblLargeurMateriel.setForeground(Color.black);
-        this.lblLongueurMateriel.setForeground(Color.black);
+        this.lblNomMateriel.setForeground(Color.white);
+        this.lblTypeMateriel.setForeground(Color.white);
+        this.lblLargeurMateriel.setForeground(Color.white);
+        this.lblLongueurMateriel.setForeground(Color.white);
 
         //Instanciation des boutons
         this.btnValider = new JButton("Valider");
-        this.btnValider.addActionListener(this);
+        this.btnValider.setBorder(null);
+		this.btnValider.setBackground(new Color(67, 87, 186));
+		this.btnValider.setForeground(Color.white);
+		this.btnValider.setPreferredSize(new Dimension(170,30));
+		this.btnValider.addActionListener(this);
 
         //Ajout des attributs aux panels
         this.panelAjoutMateriel.add(panelMessage, BorderLayout.PAGE_START);

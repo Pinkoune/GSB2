@@ -45,7 +45,7 @@ public class AffEmpruntMaterielDirecteur extends JPanel implements ActionListene
 
         //Background des panels
         this.panelMateriel.setBackground(Color.white);
-        this.panelMessage.setBackground(Color.blue);
+        this.panelMessage.setBackground(new Color(88, 24, 69));
         this.panelTableau.setBackground(Color.white);
 
         //Disposition des panels

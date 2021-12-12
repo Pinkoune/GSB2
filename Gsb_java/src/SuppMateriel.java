@@ -60,8 +60,8 @@ public class SuppMateriel extends JPanel implements ActionListener {
 
         //Background des panels
         this.panelSuppMateriel.setBackground(Color.white);
-        this.panelMessage.setBackground(Color.blue);
-        this.panelChamps.setBackground(Color.white);
+        this.panelMessage.setBackground(new Color(67, 87, 186));
+        this.panelChamps.setBackground(new Color(22, 38, 119));
         this.panelBtnQuitter.setBackground(Color.white);
 
         //Disposition des panels
@@ -81,9 +81,15 @@ public class SuppMateriel extends JPanel implements ActionListener {
 
         //Couleur de la police
         this.lblMessage.setForeground(Color.white);
+        this.lblNomMateriel.setForeground(Color.white);
+        this.lblInsertion.setForeground(Color.white);
 
         //Instanciation des boutons
         this.btnValider = new JButton("Valider");
+        this.btnValider.setBorder(null);
+		this.btnValider.setBackground(new Color(67, 87, 186));
+		this.btnValider.setForeground(Color.white);
+		this.btnValider.setPreferredSize(new Dimension(170,30));
         this.btnValider.addActionListener(this);
 
         //Ajout des attributs aux panels

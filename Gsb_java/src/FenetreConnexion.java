@@ -41,15 +41,25 @@ public class FenetreConnexion extends JFrame implements ActionListener {
 		// Set Layout des panels
 		this.monPanel.setLayout(new FlowLayout());
 		this.monPanelGlobal.setLayout(new FlowLayout());
+		
+		// Background des panels
+		this.monPanel.setBackground(new Color(22, 38, 119));
+		this.monPanelGlobal.setBackground(new Color(22, 38, 119));
+		this.panelErreur.setBackground(new Color(22, 38, 119));
 
 		// Instanciation des JLabel
-		this.lblIdentifiant = new JLabel("Identifiant :") ;
-		this.lblMotDePasse = new JLabel("Mot de Passe :") ;
+		this.lblIdentifiant = new JLabel("Identifiant :");
+		this.lblMotDePasse = new JLabel("Mot de Passe :");
+		this.lblErreur = new JLabel("");
 
+		//Couleur de la police
+        this.lblIdentifiant.setForeground(Color.white);
+        this.lblMotDePasse.setForeground(Color.white);
+        this.lblErreur.setForeground(Color.white);
+		
 		// Instanciation des JTextField
 		this.jtextIdentifiant = new JTextField("");
 		this.jpassMdp = new JPasswordField("");
-		this.lblErreur = new JLabel("");
 
 		// Création des box pour entrer les infos
 		this.jtextIdentifiant.setPreferredSize(new Dimension(150,30));
@@ -57,6 +67,10 @@ public class FenetreConnexion extends JFrame implements ActionListener {
 
 		// JButton
 		this.btnConnexion = new JButton ("Connexion");
+		this.btnConnexion.setBorder(null);
+		this.btnConnexion.setBackground(new Color(67, 87, 186));
+		this.btnConnexion.setForeground(Color.white);
+		this.btnConnexion.setPreferredSize(new Dimension(170,30));
 		this.btnConnexion.addActionListener(this);
 
 		//Ajout des elements au panel central
