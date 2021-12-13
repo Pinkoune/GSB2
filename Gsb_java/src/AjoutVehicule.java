@@ -60,8 +60,8 @@ public class AjoutVehicule extends JPanel implements ActionListener {
 
         //Background des panels
         this.panelAjoutVehicule.setBackground(Color.white);
-        this.panelMessage.setBackground(Color.blue);
-        this.panelChamps.setBackground(Color.white);
+        this.panelMessage.setBackground(new Color(144, 12, 63));
+        this.panelChamps.setBackground(new Color(88, 24, 69));
 
         //Disposition des panels
         this.panelAjoutVehicule.setLayout(new BorderLayout());
@@ -89,13 +89,17 @@ public class AjoutVehicule extends JPanel implements ActionListener {
 
         //Couleur de la police
         this.lblMessage.setForeground(Color.white);
-        this.lblImmatriculation.setForeground(Color.black);
-        this.lblModele.setForeground(Color.black);
-        this.lblMarque.setForeground(Color.black);
-        this.lblNbPLaces.setForeground(Color.black);
+        this.lblImmatriculation.setForeground(Color.white);
+        this.lblModele.setForeground(Color.white);
+        this.lblMarque.setForeground(Color.white);
+        this.lblNbPLaces.setForeground(Color.white);
 
         //Instanciation des boutons
         this.btnValider = new JButton("Valider");
+        this.btnValider.setBorder(null);
+		this.btnValider.setBackground(new Color(144, 12, 63));
+		this.btnValider.setForeground(Color.white);
+		this.btnValider.setPreferredSize(new Dimension(170,30));
         this.btnValider.addActionListener(this);
 
         //Ajout des attributs aux panels

@@ -45,7 +45,7 @@ public class AffEmpruntVehiculeDirecteur extends JPanel implements ActionListene
 
         //Background des panels
         this.panelMateriel.setBackground(Color.white);
-        this.panelMessage.setBackground(new Color(88, 24, 69));
+        this.panelMessage.setBackground(new Color(144, 12, 63));
         this.panelTableau.setBackground(Color.white);
 
         //Disposition des panels

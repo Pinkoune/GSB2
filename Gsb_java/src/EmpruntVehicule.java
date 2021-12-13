@@ -79,8 +79,8 @@ public class EmpruntVehicule extends JPanel implements ActionListener {
 
         //Background des panels
         this.panelAjoutVehicule.setBackground(Color.white);
-        this.panelMessage.setBackground(Color.blue);
-        this.panelChamps.setBackground(Color.white);
+        this.panelMessage.setBackground(new Color(144, 12, 63));
+        this.panelChamps.setBackground(new Color(88, 24, 69));
 
         //Disposition des panels
         this.panelAjoutVehicule.setLayout(new BorderLayout());
@@ -106,18 +106,22 @@ public class EmpruntVehicule extends JPanel implements ActionListener {
 
         //Couleur de la police
         this.lblMessage.setForeground(Color.white);
-        this.lblNomVehicule.setForeground(Color.black);
-        this.lblDateDebut.setForeground(Color.black);
-        this.lblDateFin.setForeground(Color.black);
-        this.lblDuree.setForeground(Color.black);
+        this.lblNomVehicule.setForeground(Color.white);
+        this.lblDateDebut.setForeground(Color.white);
+        this.lblDateFin.setForeground(Color.white);
+        this.lblDuree.setForeground(Color.white);
 
         //Instanciation des boutons
         this.btnValider = new JButton("Valider");
+        this.btnValider.setBorder(null);
+		this.btnValider.setBackground(new Color(144, 12, 63));
+		this.btnValider.setForeground(Color.white);
+		this.btnValider.setPreferredSize(new Dimension(170,30));
         this.btnValider.addActionListener(this);
         
         //Ajout de la liste dans le jcbNomVehicule
-        ArrayList<String> listeVehicule = Modele.recupListeNomVehicule();
-		String nomVehicule[] = new String[Modele.nbListeVehicule()];
+        ArrayList<String> listeVehicule = Modele.recupListeVehiculeM();
+		String nomVehicule[] = new String[Modele.nbListeAjoutVehicule()];
 		int i = 0; 
         for (String unVehicule : listeVehicule) {
             nomVehicule[i] = unVehicule;

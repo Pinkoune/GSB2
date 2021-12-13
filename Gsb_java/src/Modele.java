@@ -24,7 +24,7 @@ public class Modele {
 	public static void connexionBdd() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connexion = DriverManager.getConnection("jdbc:mysql://localhost/gsb2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "");
+			connexion = DriverManager.getConnection("jdbc:mysql://172.16.203.211/gsb2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "sio", "slam");
 			st = connexion.createStatement();
 		} catch (ClassNotFoundException e) {
 			System.out.println("Le driver n'a pas pu etre chargé");
@@ -260,7 +260,7 @@ public class Modele {
 		Modele.connexionBdd();
 		ArrayList<String> listeMateriel = new ArrayList<String>();
 		try {		
-			rs = st.executeQuery("SELECT nomMateriel FROM materiel WHERE statut IS NULL;");
+			rs = st.executeQuery("SELECT nomMateriel FROM materiel;");
 			String nom;
             while(rs.next()) {
                 nom = rs.getString("nomMateriel");
@@ -277,6 +277,44 @@ public class Modele {
 	
 	//Recuperation du nombre de materiels
 	public static int nbListeMateriel() {
+		Modele.connexionBdd();
+		int count = 0;
+		try {		
+			rs = st.executeQuery("SELECT COUNT(*) AS nb FROM materiel;") ;
+            while(rs.next()) {
+            	count = rs.getInt("nb");
+            }
+            rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erreur de l'affichage du nombre de matériels");
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	//Selection du nom des emprunts pour l'ajout
+	public static ArrayList<String> recupListeEmpruntM() {
+		Modele.connexionBdd();
+		ArrayList<String> listeMateriel = new ArrayList<String>();
+		try {		
+			rs = st.executeQuery("SELECT nomMateriel FROM materiel WHERE statut IS NULL;");
+			String nom;
+            while(rs.next()) {
+                nom = rs.getString("nomMateriel");
+                listeMateriel.add(nom);
+            }
+            rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erreur de l'ajout du nom dans la liste.");
+			e.printStackTrace();
+		}
+		return listeMateriel;
+	}
+	
+	//Recuperation du nombre de materiels
+	public static int nbListeAjoutMateriel() {
 		Modele.connexionBdd();
 		int count = 0;
 		try {		
@@ -417,6 +455,44 @@ public class Modele {
         return rep;
     }
 	
+	//Selection du nom des emprunts
+	public static ArrayList<String> recupListeEmpruntMateriel(String unIdVisiteur) {
+		Modele.connexionBdd();
+		ArrayList<String> listeMateriel = new ArrayList<String>();
+		try {		
+			rs = st.executeQuery("SELECT nomMateriel FROM empruntm, materiel WHERE materiel.idMateriel = empruntm.idMateriel AND idVisiteur = '"+ unIdVisiteur +"';");
+			String nom;
+            while(rs.next()) {
+                nom = rs.getString("nomMateriel");
+                listeMateriel.add(nom);
+            }
+            rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erreur de l'ajout du nom dans la liste.");
+			e.printStackTrace();
+		}
+		return listeMateriel;
+	}
+		
+	//Recuperation du nombre d'emprunts
+	public static int nbListeEmpruntMateriel(String unIdVisiteur) {
+		Modele.connexionBdd();
+		int count = 0;
+		try {		
+			rs = st.executeQuery("SELECT COUNT(*) AS nb FROM empruntm WHERE idVisiteur = '"+ unIdVisiteur +"';") ;
+            while(rs.next()) {
+            	count = rs.getInt("nb");
+            }
+            rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erreur de l'affichage du nombre d'emprunts");
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
 	/**
 	 * Requetes des vehicules
 	 * @param unImmat
@@ -481,7 +557,7 @@ public class Modele {
             st = connexion.createStatement();
             req = "SELECT * FROM vehicule;";
             rs = st.executeQuery(req);
-            // Pour acc�der � chacune des lignes du r�sultat de la requ�te :
+            // Pour accéder à chacune des lignes du résultat de la requête :
             while (rs.next()) {
             	String immat = rs.getString("immat");
                 String modele = rs.getString("modele");
@@ -536,7 +612,7 @@ public class Modele {
 		Modele.connexionBdd();
 		ArrayList<String> listeVehicule = new ArrayList<String>();
 		try {		
-			rs = st.executeQuery("SELECT modele FROM vehicule WHERE statut IS NULL;");
+			rs = st.executeQuery("SELECT modele FROM vehicule;");
 			String nom;
             while(rs.next()) {
                 nom = rs.getString("modele");
@@ -553,6 +629,44 @@ public class Modele {
 	
 	//Recuperation du nombre de materiels
 	public static int nbListeVehicule() {
+		Modele.connexionBdd();
+		int count = 0;
+		try {		
+			rs = st.executeQuery("SELECT COUNT(*) AS nb FROM vehicule;") ;
+            while(rs.next()) {
+            	count = rs.getInt("nb");
+            }
+            rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erreur de l'affichage du nombre de véhicules");
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	//Selection du nom des materiels
+	public static ArrayList<String> recupListeVehiculeM() {
+		Modele.connexionBdd();
+		ArrayList<String> listeVehicule = new ArrayList<String>();
+		try {		
+			rs = st.executeQuery("SELECT modele FROM vehicule WHERE statut IS NULL;");
+			String nom;
+            while(rs.next()) {
+                nom = rs.getString("modele");
+                listeVehicule.add(nom);
+            }
+            rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erreur de l'ajout du nom dans la liste.");
+			e.printStackTrace();
+		}
+		return listeVehicule;
+	}
+	
+	//Recuperation du nombre de materiels
+	public static int nbListeAjoutVehicule() {
 		Modele.connexionBdd();
 		int count = 0;
 		try {		
@@ -657,13 +771,14 @@ public class Modele {
 	}
 	
 	//Suppression de l'emprunt du materiel
-	public static boolean suppressionEmpruntVehicule(int unIdVehicule) {
+	public static boolean suppressionEmpruntVehicule(int unIdVehicule, String unIdVisiteur) {
         //Suppression d'une course
         boolean rep = false;
         int result = 0;
         try {
-            ps = connexion.prepareStatement("DELETE FROM empruntv WHERE idVehicule = ?;");
+            ps = connexion.prepareStatement("DELETE FROM empruntv WHERE idVehicule = ? AND idVisiteur = ?;");
             ps.setInt(1, unIdVehicule);
+            ps.setString(2, unIdVisiteur);
             result = ps.executeUpdate();
             if (result == 1) {
                 rep = true;
@@ -742,29 +857,67 @@ public class Modele {
     }
 	
 	//Affichage des emprunts de vehicule + nom et prenom
-		public static ArrayList < Vehicule > affichageEmpruntVehiculeDirec() {
-	        ArrayList < Vehicule > listeVehicule;
-	        listeVehicule = new ArrayList < Vehicule > ();
-	        try {
-	            st = connexion.createStatement();
-	            rs = st.executeQuery("SELECT * FROM empruntv, vehicule, visiteur WHERE empruntv.idVehicule = vehicule.idVehicule AND empruntv.idVisiteur = visiteur.id;");
-	            while (rs.next()) {
-	                String immat = rs.getString("immat");
-	                String modele = rs.getString("modele");
-	                String marque = rs.getString("marque");
-	                String dateDebut = rs.getString("dateDebut");
-	                String dateFin = rs.getString("dateFin");
-	                float duree = rs.getFloat("duree");
-	                String nomVisiteur = rs.getString("nom");
-	                String prenomVisiteur = rs.getString("prenom");
-	                
-	                listeVehicule.add(new Vehicule(immat, modele, marque, dateDebut, dateFin, duree, nomVisiteur, prenomVisiteur));
-	            }
-	        } catch (Exception e) {
-	            System.out.println("Erreur dans l'affichage des emprunts véhicules directeur.");
-	            e.printStackTrace();
-	        }
-	        return listeVehicule;
-	    }
+	public static ArrayList < Vehicule > affichageEmpruntVehiculeDirec() {
+        ArrayList < Vehicule > listeVehicule;
+        listeVehicule = new ArrayList < Vehicule > ();
+        try {
+            st = connexion.createStatement();
+            rs = st.executeQuery("SELECT * FROM empruntv, vehicule, visiteur WHERE empruntv.idVehicule = vehicule.idVehicule AND empruntv.idVisiteur = visiteur.id;");
+            while (rs.next()) {
+                String immat = rs.getString("immat");
+                String modele = rs.getString("modele");
+                String marque = rs.getString("marque");
+                String dateDebut = rs.getString("dateDebut");
+                String dateFin = rs.getString("dateFin");
+                float duree = rs.getFloat("duree");
+                String nomVisiteur = rs.getString("nom");
+                String prenomVisiteur = rs.getString("prenom");
+                
+                listeVehicule.add(new Vehicule(immat, modele, marque, dateDebut, dateFin, duree, nomVisiteur, prenomVisiteur));
+            }
+        } catch (Exception e) {
+            System.out.println("Erreur dans l'affichage des emprunts véhicules directeur.");
+            e.printStackTrace();
+        }
+        return listeVehicule;
+    }
+	
+	//Selection du nom des emprunts
+	public static ArrayList<String> recupListeEmpruntVehicule(String unIdVisiteur) {
+		Modele.connexionBdd();
+		ArrayList<String> listeVehicule = new ArrayList<String>();
+		try {		
+			rs = st.executeQuery("SELECT modele FROM empruntv, vehicule WHERE vehicule.idVehicule = empruntv.idVehicule AND idVisiteur = '"+ unIdVisiteur +"';");
+			String modele;
+            while(rs.next()) {
+            	modele = rs.getString("modele");
+                listeVehicule.add(modele);
+            }
+            rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erreur de l'ajout du modele dans la liste.");
+			e.printStackTrace();
+		}
+		return listeVehicule;
+	}
+		
+	//Recuperation du nombre d'emprunts
+	public static int nbListeEmpruntVehicule(String unIdVisiteur) {
+		Modele.connexionBdd();
+		int count = 0;
+		try {		
+			rs = st.executeQuery("SELECT COUNT(*) AS nb FROM empruntv WHERE idVisiteur = '"+ unIdVisiteur +"';") ;
+            while(rs.next()) {
+            	count = rs.getInt("nb");
+            }
+            rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erreur de l'affichage du nombre d'emprunts");
+			e.printStackTrace();
+		}
+		return count;
+	}
 
 }

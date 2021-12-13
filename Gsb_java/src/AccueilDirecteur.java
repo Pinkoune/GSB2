@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -62,14 +63,10 @@ public class AccueilDirecteur extends JPanel implements ActionListener {
 
         //Instanciation des panels
         this.monPanel.setLayout(new FlowLayout(1, 4, 2));
-        this.monPanel.setBackground(Color.pink);
+        this.monPanel.setBackground(new Color(22, 38, 119));
 
         this.monPanelGlobal = new JPanel();
         this.monPanelGlobal.setLayout(new BorderLayout());
-
-        //Creation des menus
-        this.menuMateriel = new JMenu("Gestion des matériels");
-        this.menuVehicule = new JMenu("Gestion des véhicules");
         
         //Creation de la barre de menu
         this.jMenu = new JMenuBar();
@@ -79,6 +76,14 @@ public class AccueilDirecteur extends JPanel implements ActionListener {
         this.jMenu.setPreferredSize(new Dimension(700,35));
         this.jMenu.setBorder(BorderFactory.createLineBorder(new Color(47,53,66)));
 
+        //Creation des menus
+        this.menuMateriel = new JMenu("Gestion des matériels");
+        this.menuVehicule = new JMenu("Gestion des véhicules");
+        
+        //Style des menus
+        this.menuMateriel.setForeground(Color.white);
+        this.menuVehicule.setForeground(Color.white);
+        
         //Creation des elements du menu materiel
         this.btnAffichageEmpruntMat = new JMenuItem("Voir les emprunts de matériel");
         this.btnAffichageMateriel = new JMenuItem("Voir les matériels disponibles");
@@ -102,8 +107,6 @@ public class AccueilDirecteur extends JPanel implements ActionListener {
         // Ajout de l'element au menu 
         jMenu.add(menuMateriel);
         jMenu.add(menuVehicule);
-        
-        
 
         // Permet de definir le menu utilise dans la JFrame
         this.framePrincipale.setJMenuBar(jMenu);
@@ -111,7 +114,11 @@ public class AccueilDirecteur extends JPanel implements ActionListener {
         //Label affichant le message
         this.lblMessage = new JLabel();
         this.lblMessage.setText("Directeur du GSB");
+        this.lblMessage.setFont(new Font("Serif", Font.BOLD, 30));
 
+        //Couleur de la police
+        this.lblMessage.setForeground(Color.white);
+        
         //Ajout des panels
         this.monPanel.add(lblMessage);
         this.monPanelGlobal.add(monPanel, BorderLayout.CENTER);

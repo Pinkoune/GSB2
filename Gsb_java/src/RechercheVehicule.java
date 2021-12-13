@@ -41,9 +41,9 @@ public class RechercheVehicule extends JPanel implements ActionListener {
         this.panelHaut = new JPanel();
         this.panelMil = new JPanel();
 
-        //Background et disposition des panels
-        this.panelHaut.setBackground(Color.blue);
-        this.panelMil.setBackground(Color.white);
+      //Background et disposition des panels
+        this.panelHaut.setBackground(new Color(144, 12, 63));
+        this.panelMil.setBackground(new Color(88, 24, 69));
 
         this.monPanel.setLayout(new BorderLayout());
         this.panelMil.setLayout(new FlowLayout());
@@ -60,6 +60,10 @@ public class RechercheVehicule extends JPanel implements ActionListener {
 
         //Instanciation du bouton
         this.btnValider1 = new JButton("Valider");
+        this.btnValider1.setBorder(null);
+		this.btnValider1.setBackground(new Color(144, 12, 63));
+		this.btnValider1.setForeground(Color.white);
+		this.btnValider1.setPreferredSize(new Dimension(170,30));
         this.btnValider1.addActionListener(new ActionListener() {
             //Recherche d'un Vehicule
             public void actionPerformed(ActionEvent e) {
@@ -71,6 +75,8 @@ public class RechercheVehicule extends JPanel implements ActionListener {
 
         //Couleur de la police
         this.lblMessage.setForeground(Color.white);
+        this.lblSupp1.setForeground(Color.white);
+        this.lblInsertion.setForeground(Color.white);
 
         //Ajout des attributs aux panels
         this.monPanel.add(panelHaut, BorderLayout.PAGE_START);

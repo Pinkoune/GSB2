@@ -45,7 +45,7 @@ public class EmpruntAffichageVehicule extends JPanel implements ActionListener {
 
         //Background des panels
         this.panelMateriel.setBackground(Color.white);
-        this.panelMessage.setBackground(Color.blue);
+        this.panelMessage.setBackground(new Color(144, 12, 63));
         this.panelTableau.setBackground(Color.white);
 
         //Disposition des panels

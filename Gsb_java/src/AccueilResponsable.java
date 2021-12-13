@@ -84,12 +84,15 @@ public class AccueilResponsable extends JPanel implements ActionListener {
         
         //Style de la barre de menu
         this.jMenu.setBackground(new Color(47,53,66));
-        this.jMenu.setPreferredSize(new Dimension(700,35));
+        this.jMenu.setPreferredSize(new Dimension(700,30));
         this.jMenu.setBorder(BorderFactory.createLineBorder(new Color(47,53,66)));
         
         //Creation des menus
         this.menuMateriel = new JMenu("Menu du matériel");
         this.menuVehicule = new JMenu("Menu des véhicules");
+        
+        this.menuMateriel.setBackground(new Color(47,53,66));
+        this.menuVehicule.setBackground(new Color(47,53,66));
         
         //Style des menus
         this.menuMateriel.setForeground(Color.white);
@@ -202,7 +205,7 @@ public class AccueilResponsable extends JPanel implements ActionListener {
         } else if (e.getSource().equals(btnSupprimerVehicule)) {
 
             this.framePrincipale.getContentPane().removeAll();
-            this.framePrincipale.getContentPane().add(new SuppVehicule().getMonPanelGlobal());
+            this.framePrincipale.getContentPane().add(new SuppVehicule(pseudo).getMonPanelGlobal());
             this.framePrincipale.getContentPane().revalidate();
             this.framePrincipale.getContentPane().repaint();
 

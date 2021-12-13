@@ -79,8 +79,8 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
 
         //Background des panels
         this.panelAjoutMateriel.setBackground(Color.white);
-        this.panelMessage.setBackground(Color.blue);
-        this.panelChamps.setBackground(Color.white);
+        this.panelMessage.setBackground(new Color(67, 87, 186));
+        this.panelChamps.setBackground(new Color(22, 38, 119));
 
         //Disposition des panels
         this.panelAjoutMateriel.setLayout(new BorderLayout());
@@ -96,7 +96,7 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
         this.lblInsertion = new JLabel();
         this.lblInsertion.setText("");
         
-        //Instanciation des entr�es
+        //Instanciation des entrées
         this.jtfDateDebut = new JTextField();
         this.jtfDateDebut.setPreferredSize(new Dimension(150, 30));
         this.jtfDateFin = new JTextField();
@@ -106,18 +106,22 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
 
         //Couleur de la police
         this.lblMessage.setForeground(Color.white);
-        this.lblNomMateriel.setForeground(Color.black);
-        this.lblDateDebut.setForeground(Color.black);
-        this.lblDateFin.setForeground(Color.black);
-        this.lblDuree.setForeground(Color.black);
+        this.lblNomMateriel.setForeground(Color.white);
+        this.lblDateDebut.setForeground(Color.white);
+        this.lblDateFin.setForeground(Color.white);
+        this.lblDuree.setForeground(Color.white);
 
         //Instanciation des boutons
         this.btnValider = new JButton("Valider");
+        this.btnValider.setBorder(null);
+		this.btnValider.setBackground(new Color(67, 87, 186));
+		this.btnValider.setForeground(Color.white);
+		this.btnValider.setPreferredSize(new Dimension(170,30));
         this.btnValider.addActionListener(this);
         
         //Ajout de la liste dans le jcbNomMateriel
-        ArrayList<String> listeMateriel = Modele.recupListeNomMateriel();
-		String nomMateriel[] = new String[Modele.nbListeMateriel()];
+        ArrayList<String> listeMateriel = Modele.recupListeEmpruntM();
+		String nomMateriel[] = new String[Modele.nbListeAjoutMateriel()];
 		int i = 0; 
         for (String unMateriel : listeMateriel) {
             nomMateriel[i] = unMateriel;
