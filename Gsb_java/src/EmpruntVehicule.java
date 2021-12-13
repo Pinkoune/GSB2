@@ -102,7 +102,7 @@ public class EmpruntVehicule extends JPanel implements ActionListener {
         this.lblDuree.setBounds(285, 215, 150, 25);
         
         this.lblInsertion = new JLabel();
-        this.lblInsertion.setBounds(265, 330, 150, 25);
+        this.lblInsertion.setBounds(280, 330, 150, 25);
         this.lblInsertion.setText("");
         
         //Instanciation des entrées

@@ -85,7 +85,7 @@ public class AjoutVehicule extends JPanel implements ActionListener {
         this.lblNbPLaces.setBounds(255, 215, 200, 25);
         
         this.lblInsertion = new JLabel();
-        this.lblInsertion.setBounds(265, 330, 150, 25);
+        this.lblInsertion.setBounds(245, 330, 200, 25);
         this.lblInsertion.setText("");
 
         //Instanciation des entrées
