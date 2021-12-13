@@ -114,7 +114,6 @@ public class EmpruntSuppMateriel extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        //Si la source de l'evenement est le JButton appele 
         if (e.getSource() == btnValider) {
         	
             String nomMateriel = jtfSuppression.getText();
