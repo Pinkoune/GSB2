@@ -53,8 +53,13 @@ public class RechercheVehicule extends JPanel implements ActionListener {
         //Instanciation des messages
         this.lblMessage = new JLabel("Véhicule - recherche");
         this.lblSupp1 = new JLabel("Entrez l'immatriculation du Véhicule : ");
+        
         this.jtfSupp1 = new JTextField("");
+        this.jtfSupp1.setBackground(new Color(47,53,66));
+ 	   	this.jtfSupp1.setBorder(BorderFactory.createLineBorder(new Color(144, 12, 63)));
+ 	   	this.jtfSupp1.setCaretColor(Color.white);
         this.jtfSupp1.setPreferredSize(new Dimension(150, 30));
+        
         this.lblInsertion = new JLabel();
         this.lblInsertion.setText("");
 
@@ -77,6 +82,7 @@ public class RechercheVehicule extends JPanel implements ActionListener {
         this.lblMessage.setForeground(Color.white);
         this.lblSupp1.setForeground(Color.white);
         this.lblInsertion.setForeground(Color.white);
+        this.jtfSupp1.setForeground(Color.white);
 
         //Ajout des attributs aux panels
         this.monPanel.add(panelHaut, BorderLayout.PAGE_START);

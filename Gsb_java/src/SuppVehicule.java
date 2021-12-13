@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -87,6 +88,10 @@ public class SuppVehicule extends JPanel implements ActionListener {
  	        i++;
  	    }
  	   this.listeVehicule = new JComboBox<String>(nomVehicule);	   
+ 	   this.listeVehicule.setBackground(new Color(47,53,66));
+	   this.listeVehicule.setBorder(BorderFactory.createLineBorder(new Color(144, 12, 63)));
+	   this.listeVehicule.setForeground(Color.white);
+	   this.listeVehicule.setSelectedIndex(-1);
  	   this.listeVehicule.addActionListener(this);
 
         //Couleur de la police

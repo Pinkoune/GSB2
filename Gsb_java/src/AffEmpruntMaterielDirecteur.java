@@ -60,7 +60,7 @@ public class AffEmpruntMaterielDirecteur extends JPanel implements ActionListene
         this.lblMessage.setForeground(Color.white);
 
         //Tableau
-        Object data[][] = new Object[7][7];
+        Object data[][] = new Object[15][7];
         int i = 0;
         for (Materiel monMateriel: listeMateriel) {
             data[i][0] = monMateriel.getNomMateriel();
@@ -82,6 +82,8 @@ public class AffEmpruntMaterielDirecteur extends JPanel implements ActionListene
             "Prenom de l'emprunteur",
         };
         this.tableau = new JTable(data, title);
+        this.tableau.setBackground(new Color(47,53,66));
+        this.tableau.setForeground(Color.white);
         this.tableau.setPreferredScrollableViewportSize(new Dimension(350, 300));
 
         //Taille

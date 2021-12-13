@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -46,8 +47,6 @@ public class EmpruntVehicule extends JPanel implements ActionListener {
     private JLabel lblInsertion;
 
     //JTextField
-    private JTextField jtfDateDebut;
-    private JTextField jtfDateFin;
     private JTextField jtfDuree;
     private JTextField jtfPseudo;
     
@@ -85,31 +84,34 @@ public class EmpruntVehicule extends JPanel implements ActionListener {
         //Disposition des panels
         this.panelAjoutVehicule.setLayout(new BorderLayout());
         this.panelMessage.setLayout(new FlowLayout());
-        this.panelChamps.setLayout(new FlowLayout());
+        this.panelChamps.setLayout(null);
 
         //Instanciation des messages
         this.lblMessage = new JLabel("Véhicule - Emprunt");
-        this.lblNomVehicule = new JLabel("Nom du Véhicule :");
-        this.lblDateDebut = new JLabel("Date du début de l'emprunt :");
-        this.lblDateFin = new JLabel("Date de fin de l'emprunt :");
-        this.lblDuree = new JLabel("Durée de l'emprunt :");
+        
+        this.lblNomVehicule = new JLabel("Nom du Véhicule");
+        this.lblNomVehicule.setBounds(290, 35, 150, 25);
+        
+        this.lblDateDebut = new JLabel("Date du début de l'emprunt");
+        this.lblDateDebut.setBounds(265, 95, 180, 25);
+        
+        this.lblDateFin = new JLabel("Date de fin de l'emprunt");
+        this.lblDateFin.setBounds(270, 155, 150, 25);
+        
+        this.lblDuree = new JLabel("Durée de l'emprunt");
+        this.lblDuree.setBounds(285, 215, 150, 25);
+        
         this.lblInsertion = new JLabel();
+        this.lblInsertion.setBounds(265, 330, 150, 25);
         this.lblInsertion.setText("");
         
-        //Instanciation des entr�es
-        this.jtfDateDebut = new JTextField();
-        this.jtfDateDebut.setPreferredSize(new Dimension(150, 30));
-        this.jtfDateFin = new JTextField();
-        this.jtfDateFin.setPreferredSize(new Dimension(150, 30));
+        //Instanciation des entrées
         this.jtfDuree = new JTextField();
+        this.jtfDuree.setBackground(new Color(47,53,66));
+		this.jtfDuree.setBorder(BorderFactory.createLineBorder(new Color(67, 87, 186)));
         this.jtfDuree.setPreferredSize(new Dimension(150, 30));
-
-        //Couleur de la police
-        this.lblMessage.setForeground(Color.white);
-        this.lblNomVehicule.setForeground(Color.white);
-        this.lblDateDebut.setForeground(Color.white);
-        this.lblDateFin.setForeground(Color.white);
-        this.lblDuree.setForeground(Color.white);
+        this.jtfDuree.setCaretColor(Color.white);
+        this.jtfDuree.setBounds(265, 240, 150, 25);
 
         //Instanciation des boutons
         this.btnValider = new JButton("Valider");
@@ -117,6 +119,7 @@ public class EmpruntVehicule extends JPanel implements ActionListener {
 		this.btnValider.setBackground(new Color(144, 12, 63));
 		this.btnValider.setForeground(Color.white);
 		this.btnValider.setPreferredSize(new Dimension(170,30));
+		this.btnValider.setBounds(240, 285, 200, 35);
         this.btnValider.addActionListener(this);
         
         //Ajout de la liste dans le jcbNomVehicule
@@ -136,6 +139,7 @@ public class EmpruntVehicule extends JPanel implements ActionListener {
         p.put("text.year", "Year");
         JDatePanelImpl panel = new JDatePanelImpl(model,p);
         this.dateDebut = new JDatePickerImpl(panel, new DateLabelFormatter());
+        this.dateDebut.setBounds(265, 120, 150, 25);
         
         //DatePickerFin
         SqlDateModel model2 = new SqlDateModel();
@@ -145,13 +149,26 @@ public class EmpruntVehicule extends JPanel implements ActionListener {
         p2.put("text.year", "Year");
         JDatePanelImpl panel2 = new JDatePanelImpl(model2,p2);
         this.dateFin = new JDatePickerImpl(panel2, new DateLabelFormatter());
+        this.dateFin.setBounds(265, 180, 150, 25); 
         
         //Instanciation de la liste de noms
         this.jcbNomVehicule = new JComboBox<String>();
         this.jcbNomVehicule = new JComboBox<String>(nomVehicule);
+        this.jcbNomVehicule.setBackground(new Color(47,53,66));
+		this.jcbNomVehicule.setBorder(BorderFactory.createLineBorder(new Color(67, 87, 186)));
+        this.jcbNomVehicule.setBounds(265, 60, 150, 25);
         this.jcbNomVehicule.addActionListener(this);
         
-
+      //Couleur de la police
+        this.lblMessage.setForeground(Color.white);
+        this.lblNomVehicule.setForeground(Color.white);
+        this.lblDateDebut.setForeground(Color.white);
+        this.lblDateFin.setForeground(Color.white);
+        this.lblDuree.setForeground(Color.white);
+        this.lblInsertion.setForeground(Color.white);
+        this.jtfDuree.setForeground(Color.white);
+        this.jcbNomVehicule.setForeground(Color.white);
+        
         //Ajout des attributs aux panels
         this.panelAjoutVehicule.add(panelMessage, BorderLayout.PAGE_START);
         this.panelAjoutVehicule.add(panelChamps, BorderLayout.CENTER);

@@ -95,6 +95,20 @@ public class AccueilDirecteur extends JPanel implements ActionListener {
         this.btnAffichageVehicule = new JMenuItem("Voir les véhicules disponibles");
         this.menuVehicule.add(this.btnAffichageEmpruntVehicule);
         this.menuVehicule.add(this.btnAffichageVehicule);
+        
+      //Couleurs des items des matériels
+        this.btnAffichageEmpruntMat.setBackground(new Color(47,53,66));
+        this.btnAffichageMateriel.setBackground(new Color(47,53,66));
+        
+        this.btnAffichageEmpruntMat.setForeground(Color.white);
+        this.btnAffichageMateriel.setForeground(Color.white);
+        
+        //Couleurs des items des véhicules
+        this.btnAffichageEmpruntVehicule.setBackground(new Color(47,53,66));
+        this.btnAffichageVehicule.setBackground(new Color(47,53,66));
+        
+        this.btnAffichageEmpruntVehicule.setForeground(Color.white);
+        this.btnAffichageVehicule.setForeground(Color.white);
 
         //Ecoute des items du menu course
         this.btnAffichageMateriel.addActionListener(this);

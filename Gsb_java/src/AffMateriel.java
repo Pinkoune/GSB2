@@ -60,7 +60,7 @@ public class AffMateriel extends JPanel implements ActionListener {
         this.lblMessage.setForeground(Color.white);
 
         //Tableau
-        Object data[][] = new Object[5][5];
+        Object data[][] = new Object[15][5];
         int i = 0;
         for (Materiel monMateriel: listeMateriel) {
             data[i][0] = monMateriel.getNomMateriel();
@@ -76,6 +76,8 @@ public class AffMateriel extends JPanel implements ActionListener {
             "Longueur du matériel",
         };
         this.tableau = new JTable(data, title);
+        this.tableau.setBackground(new Color(47,53,66));
+        this.tableau.setForeground(Color.white);
         this.tableau.setPreferredScrollableViewportSize(new Dimension(350, 300));
 
         //Taille

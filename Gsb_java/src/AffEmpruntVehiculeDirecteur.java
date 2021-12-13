@@ -60,7 +60,7 @@ public class AffEmpruntVehiculeDirecteur extends JPanel implements ActionListene
         this.lblMessage.setForeground(Color.white);
 
         //Tableau
-        Object data[][] = new Object[8][8];
+        Object data[][] = new Object[15][8];
         int i = 0;
         for (Vehicule monVehicule: listeVehicule) {
             data[i][0] = monVehicule.getImmat();
@@ -84,6 +84,8 @@ public class AffEmpruntVehiculeDirecteur extends JPanel implements ActionListene
             "Prenom de l'emprunteur",
         };
         this.tableau = new JTable(data, title);
+        this.tableau.setBackground(new Color(47,53,66));
+        this.tableau.setForeground(Color.white);
         this.tableau.setPreferredScrollableViewportSize(new Dimension(350, 300));
 
         //Taille

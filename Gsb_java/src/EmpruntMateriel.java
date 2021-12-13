@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -46,8 +47,6 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
     private JLabel lblInsertion;
 
     //JTextField
-    private JTextField jtfDateDebut;
-    private JTextField jtfDateFin;
     private JTextField jtfDuree;
     private JTextField jtfPseudo;
     
@@ -85,31 +84,35 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
         //Disposition des panels
         this.panelAjoutMateriel.setLayout(new BorderLayout());
         this.panelMessage.setLayout(new FlowLayout());
-        this.panelChamps.setLayout(new FlowLayout());
+        this.panelChamps.setLayout(null);
 
         //Instanciation des messages
         this.lblMessage = new JLabel("Matériel - Emprunt");
-        this.lblNomMateriel = new JLabel("Nom du matériel :");
-        this.lblDateDebut = new JLabel("Date du debut de l'emprunt :");
-        this.lblDateFin = new JLabel("Date de fin de l'emprunt :");
-        this.lblDuree = new JLabel("Durée de l'emprunt :");
+        
+        this.lblNomMateriel = new JLabel("Nom du matériel");
+        this.lblNomMateriel.setBounds(290, 35, 150, 25);
+        
+        this.lblDateDebut = new JLabel("Date du debut de l'emprunt");
+        this.lblDateDebut.setBounds(265, 95, 180, 25);
+        
+        this.lblDateFin = new JLabel("Date de fin de l'emprunt");
+        this.lblDateFin.setBounds(270, 155, 150, 25);
+        
+        this.lblDuree = new JLabel("Durée de l'emprunt");
+        this.lblDuree.setBounds(285, 215, 150, 25);
+        
         this.lblInsertion = new JLabel();
+        this.lblInsertion.setBounds(265, 330, 150, 25);
+        
         this.lblInsertion.setText("");
         
         //Instanciation des entrées
-        this.jtfDateDebut = new JTextField();
-        this.jtfDateDebut.setPreferredSize(new Dimension(150, 30));
-        this.jtfDateFin = new JTextField();
-        this.jtfDateFin.setPreferredSize(new Dimension(150, 30));
         this.jtfDuree = new JTextField();
+        this.jtfDuree.setBackground(new Color(47,53,66));
+		this.jtfDuree.setBorder(BorderFactory.createLineBorder(new Color(67, 87, 186)));
         this.jtfDuree.setPreferredSize(new Dimension(150, 30));
-
-        //Couleur de la police
-        this.lblMessage.setForeground(Color.white);
-        this.lblNomMateriel.setForeground(Color.white);
-        this.lblDateDebut.setForeground(Color.white);
-        this.lblDateFin.setForeground(Color.white);
-        this.lblDuree.setForeground(Color.white);
+        this.jtfDuree.setCaretColor(Color.white);
+        this.jtfDuree.setBounds(265, 240, 150, 25);
 
         //Instanciation des boutons
         this.btnValider = new JButton("Valider");
@@ -117,6 +120,7 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
 		this.btnValider.setBackground(new Color(67, 87, 186));
 		this.btnValider.setForeground(Color.white);
 		this.btnValider.setPreferredSize(new Dimension(170,30));
+		this.btnValider.setBounds(240, 285, 200, 35);
         this.btnValider.addActionListener(this);
         
         //Ajout de la liste dans le jcbNomMateriel
@@ -136,6 +140,9 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
         p.put("text.year", "Year");
         JDatePanelImpl panel = new JDatePanelImpl(model,p);
         this.dateDebut = new JDatePickerImpl(panel, new DateLabelFormatter());
+        this.dateDebut.setBackground(new Color(47,53,66));
+		this.dateDebut.setBorder(BorderFactory.createLineBorder(new Color(67, 87, 186)));
+        this.dateDebut.setBounds(265, 120, 150, 25);
         
         //DatePickerFin
         SqlDateModel model2 = new SqlDateModel();
@@ -145,12 +152,27 @@ public class EmpruntMateriel extends JPanel implements ActionListener {
         p2.put("text.year", "Year");
         JDatePanelImpl panel2 = new JDatePanelImpl(model2,p2);
         this.dateFin = new JDatePickerImpl(panel2, new DateLabelFormatter());
+        this.dateFin.setBackground(new Color(47,53,66));
+		this.dateFin.setBorder(BorderFactory.createLineBorder(new Color(67, 87, 186)));
+        this.dateFin.setBounds(265, 180, 150, 25);        
         
         //Instanciation de la liste de noms
         this.jcbNomMateriel = new JComboBox<String>();
         this.jcbNomMateriel = new JComboBox<String>(nomMateriel);
+        this.jcbNomMateriel.setBackground(new Color(47,53,66));
+		this.jcbNomMateriel.setBorder(BorderFactory.createLineBorder(new Color(67, 87, 186)));
+        this.jcbNomMateriel.setBounds(265, 60, 150, 25);
         this.jcbNomMateriel.addActionListener(this);
         
+        //Couleur de la police
+        this.lblMessage.setForeground(Color.white);
+        this.lblNomMateriel.setForeground(Color.white);
+        this.lblDateDebut.setForeground(Color.white);
+        this.lblDateFin.setForeground(Color.white);
+        this.lblDuree.setForeground(Color.white);
+        this.lblInsertion.setForeground(Color.white);
+        this.jtfDuree.setForeground(Color.white);
+        this.jcbNomMateriel.setForeground(Color.white);
 
         //Ajout des attributs aux panels
         this.panelAjoutMateriel.add(panelMessage, BorderLayout.PAGE_START);

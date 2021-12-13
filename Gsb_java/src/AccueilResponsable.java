@@ -117,14 +117,36 @@ public class AccueilResponsable extends JPanel implements ActionListener {
         this.menuVehicule.add(this.btnAjouterVehicule);
         this.menuVehicule.add(this.btnSupprimerVehicule);
         this.menuVehicule.add(this.btnRechercherVehicule);
+        
+        //Couleurs des items des matériels
+        this.btnAjouterMateriel.setBackground(new Color(47,53,66));
+        this.btnSupprimerMateriel.setBackground(new Color(47,53,66));
+        this.btnRechercherMateriel.setBackground(new Color(47,53,66));
+        this.btnAffichageMateriel.setBackground(new Color(47,53,66));
+        
+        this.btnAjouterMateriel.setForeground(Color.white);
+        this.btnSupprimerMateriel.setForeground(Color.white);
+        this.btnRechercherMateriel.setForeground(Color.white);
+        this.btnAffichageMateriel.setForeground(Color.white);
+        
+        //Couleurs des items des véhicules
+        this.btnAjouterVehicule.setBackground(new Color(47,53,66));
+        this.btnSupprimerVehicule.setBackground(new Color(47,53,66));
+        this.btnRechercherVehicule.setBackground(new Color(47,53,66));
+        this.btnAffichageVehicule.setBackground(new Color(47,53,66));
+        
+        this.btnAjouterVehicule.setForeground(Color.white);
+        this.btnSupprimerVehicule.setForeground(Color.white);
+        this.btnRechercherVehicule.setForeground(Color.white);
+        this.btnAffichageVehicule.setForeground(Color.white);
 
-        //Ecoute des items du menu course
+        //Ecoute des items du menu matériel
         this.btnAjouterMateriel.addActionListener(this);
         this.btnSupprimerMateriel.addActionListener(this);
         this.btnRechercherMateriel.addActionListener(this);
         this.btnAffichageMateriel.addActionListener(this);
 
-        //Ecoute des items du menu ecurie
+        //Ecoute des items du menu véhicule
         this.btnAjouterVehicule.addActionListener(this);
         this.btnSupprimerVehicule.addActionListener(this);
         this.btnRechercherVehicule.addActionListener(this);

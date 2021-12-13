@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
+import javax.swing.ComboBoxEditor;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -87,6 +89,10 @@ public class SuppMateriel extends JPanel implements ActionListener {
  	        i++;
  	    }
  	   this.listeMateriel = new JComboBox<String>(nomMateriel);	   
+ 	   this.listeMateriel.setBackground(new Color(47,53,66));
+ 	   this.listeMateriel.setBorder(BorderFactory.createLineBorder(new Color(67, 87, 186)));
+ 	   this.listeMateriel.setForeground(Color.white);
+ 	   this.listeMateriel.setSelectedIndex(-1);
  	   this.listeMateriel.addActionListener(this);
 
         //Couleur de la police

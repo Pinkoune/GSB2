@@ -53,10 +53,20 @@ public class RechercheMateriel extends JPanel implements ActionListener {
         //Instanciation des messages
         this.lblMessage = new JLabel("Matériel - recherche");
         this.lblSupp1 = new JLabel("Entrez le nom du matériel : ");
+        
         this.jtfSupp1 = new JTextField("");
+        this.jtfSupp1.setBackground(new Color(47,53,66));
+  	   	this.jtfSupp1.setBorder(BorderFactory.createLineBorder(new Color(67, 87, 186)));
+  	   	this.jtfSupp1.setCaretColor(Color.white);
         this.jtfSupp1.setPreferredSize(new Dimension(150, 30));
+        
         this.lblInsertion = new JLabel();
         this.lblInsertion.setText("");
+        
+        //Couleur de police
+        this.lblMessage.setForeground(Color.white);
+        this.jtfSupp1.setForeground(Color.white);
+        this.lblInsertion.setForeground(Color.white);
 
         //Instanciation du bouton
         this.btnValider1 = new JButton("Valider");

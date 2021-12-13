@@ -108,6 +108,24 @@ public class AccueilVisiteur extends JPanel implements ActionListener {
         this.menuVehicule.add(this.btnAffichageEmpruntVehicule);
         this.menuVehicule.add(this.btnEmpruntVehicule);
         this.menuVehicule.add(this.btnSupprimerEmpruntVehicule);
+        
+        //Couleurs des items des matériels
+        this.btnAffichageEmpruntMat.setBackground(new Color(47,53,66));
+        this.btnEmpruntMateriel.setBackground(new Color(47,53,66));
+        this.btnSupprimerEmpruntMat.setBackground(new Color(47,53,66));
+        
+        this.btnAffichageEmpruntMat.setForeground(Color.white);
+        this.btnEmpruntMateriel.setForeground(Color.white);
+        this.btnSupprimerEmpruntMat.setForeground(Color.white);
+        
+        //Couleurs des items des véhicules
+        this.btnAffichageEmpruntVehicule.setBackground(new Color(47,53,66));
+        this.btnEmpruntVehicule.setBackground(new Color(47,53,66));
+        this.btnSupprimerEmpruntVehicule.setBackground(new Color(47,53,66));
+        
+        this.btnAffichageEmpruntVehicule.setForeground(Color.white);
+        this.btnEmpruntVehicule.setForeground(Color.white);
+        this.btnSupprimerEmpruntVehicule.setForeground(Color.white);
 
         //Ecoute des items du menu course
         this.btnEmpruntMateriel.addActionListener(this);

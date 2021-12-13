@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -75,7 +76,7 @@ public class EmpruntSuppMateriel extends JPanel implements ActionListener {
 
         //Instanciation des messages
         this.lblMessage = new JLabel("Retirer un emprunt de matériel");
-        this.lblNomMateriel = new JLabel("Entrez le nom :");
+        this.lblNomMateriel = new JLabel("Choisissez le matériel à retirer :");
         this.lblInsertion = new JLabel("");
 
         //Liste des Matériels
@@ -89,7 +90,11 @@ public class EmpruntSuppMateriel extends JPanel implements ActionListener {
  	    	nomMateriel[i] = unMateriel;
  	        i++;
  	    }
- 	   this.listeMateriel = new JComboBox<String>(nomMateriel);	   
+ 	   this.listeMateriel = new JComboBox<String>(nomMateriel);
+ 	   this.listeMateriel.setBackground(new Color(47,53,66));
+	   this.listeMateriel.setBorder(BorderFactory.createLineBorder(new Color(67, 87, 186)));
+	   this.listeMateriel.setForeground(Color.white);
+	   this.listeMateriel.setSelectedIndex(-1);
  	   this.listeMateriel.addActionListener(this);
 
         //Couleur de la police

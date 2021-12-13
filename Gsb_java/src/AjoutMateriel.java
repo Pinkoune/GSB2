@@ -10,6 +10,8 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -66,26 +68,55 @@ public class AjoutMateriel extends JPanel implements ActionListener {
         //Disposition des panels
         this.panelAjoutMateriel.setLayout(new BorderLayout());
         this.panelMessage.setLayout(new FlowLayout());
-        this.panelChamps.setLayout(new FlowLayout());
+        this.panelChamps.setLayout(null);
 
         //Instanciation des messages
         this.lblMessage = new JLabel("Matériel - ajout");
-        this.lblNomMateriel = new JLabel("Nom du matériel :");
-        this.lblTypeMateriel = new JLabel("Type du matériel :");
-        this.lblLargeurMateriel = new JLabel("Largeur du matériel :");
-        this.lblLongueurMateriel = new JLabel("Longueur du matériel :");
+        
+        this.lblNomMateriel = new JLabel("Nom du matériel");
+        this.lblNomMateriel.setBounds(290, 35, 150, 25);
+        
+        this.lblTypeMateriel = new JLabel("Type du matériel");
+        this.lblTypeMateriel.setBounds(290, 95, 150, 25);
+        
+        this.lblLargeurMateriel = new JLabel("Largeur du matériel");
+        this.lblLargeurMateriel.setBounds(280, 155, 150, 25);
+        
+        this.lblLongueurMateriel = new JLabel("Longueur du matériel");
+        this.lblLongueurMateriel.setBounds(275, 215, 150, 25);
+        
         this.lblInsertion = new JLabel();
+        this.lblInsertion.setBounds(265, 330, 150, 25);
         this.lblInsertion.setText("");
 
         //Instanciation des entrées
         this.jtfNomMateriel = new JTextField();
-        this.jtfNomMateriel.setPreferredSize(new Dimension(150, 30));
+        this.jtfNomMateriel.setBackground(new Color(47,53,66));
+		this.jtfNomMateriel.setBorder(BorderFactory.createLineBorder(new Color(67, 87, 186)));
+        this.jtfNomMateriel.setMaximumSize(new Dimension(150, 30));
+        this.jtfNomMateriel.setCaretColor(Color.white);
+        this.jtfNomMateriel.setBounds(265, 60, 150, 25);
+        
         this.jtfTypeMateriel = new JTextField();
-        this.jtfTypeMateriel.setPreferredSize(new Dimension(150, 30));
+        this.jtfTypeMateriel.setBackground(new Color(47,53,66));
+		this.jtfTypeMateriel.setBorder(BorderFactory.createLineBorder(new Color(67, 87, 186)));
+        this.jtfTypeMateriel.setMaximumSize(new Dimension(150, 30));
+        this.jtfTypeMateriel.setCaretColor(Color.white);
+        this.jtfTypeMateriel.setBounds(265, 120, 150, 25);
+        
         this.jtfLargeurMateriel = new JTextField();
-        this.jtfLargeurMateriel.setPreferredSize(new Dimension(150, 30));
+        this.jtfLargeurMateriel.setBackground(new Color(47,53,66));
+		this.jtfLargeurMateriel.setBorder(BorderFactory.createLineBorder(new Color(67, 87, 186)));
+        this.jtfLargeurMateriel.setMaximumSize(new Dimension(150, 30));
+        this.jtfLargeurMateriel.setCaretColor(Color.white);
+        this.jtfLargeurMateriel.setBounds(265, 180, 150, 25);
+        
         this.jtfLongueurMateriel = new JTextField();
-        this.jtfLongueurMateriel.setPreferredSize(new Dimension(150, 30));
+        this.jtfLongueurMateriel.setBackground(new Color(47,53,66));
+		this.jtfLongueurMateriel.setBorder(BorderFactory.createLineBorder(new Color(67, 87, 186)));
+        this.jtfLongueurMateriel.setMaximumSize(new Dimension(150, 30));
+        this.jtfLongueurMateriel.setCaretColor(Color.white);
+        this.jtfLongueurMateriel.setBounds(265, 240, 150, 25);
 
         //Couleur de la police
         this.lblMessage.setForeground(Color.white);
@@ -93,13 +124,20 @@ public class AjoutMateriel extends JPanel implements ActionListener {
         this.lblTypeMateriel.setForeground(Color.white);
         this.lblLargeurMateriel.setForeground(Color.white);
         this.lblLongueurMateriel.setForeground(Color.white);
+        this.lblInsertion.setForeground(Color.white);
+        
+        this.jtfNomMateriel.setForeground(Color.white);
+        this.jtfTypeMateriel.setForeground(Color.white);
+        this.jtfLargeurMateriel.setForeground(Color.white);
+        this.jtfLongueurMateriel.setForeground(Color.white);
 
         //Instanciation des boutons
         this.btnValider = new JButton("Valider");
         this.btnValider.setBorder(null);
 		this.btnValider.setBackground(new Color(67, 87, 186));
 		this.btnValider.setForeground(Color.white);
-		this.btnValider.setPreferredSize(new Dimension(170,30));
+		this.btnValider.setMaximumSize(new Dimension(170,30));
+		this.btnValider.setBounds(240, 285, 200, 35);
 		this.btnValider.addActionListener(this);
 
         //Ajout des attributs aux panels
@@ -146,7 +184,7 @@ public class AjoutMateriel extends JPanel implements ActionListener {
             if (rep) {
                 lblInsertion.setText("Un nouveau matériel a été ajouté");
             } else {
-                lblInsertion.setText("ERREUR, le maté0riel n'a pas pu être ajouté");
+                lblInsertion.setText("ERREUR, le matériel n'a pas pu être ajouté");
             }
         }
     }
