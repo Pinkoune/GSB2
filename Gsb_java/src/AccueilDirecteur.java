@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -69,9 +70,14 @@ public class AccueilDirecteur extends JPanel implements ActionListener {
         //Creation des menus
         this.menuMateriel = new JMenu("Gestion des matériels");
         this.menuVehicule = new JMenu("Gestion des véhicules");
-
+        
         //Creation de la barre de menu
-        JMenuBar jMenu = new JMenuBar();
+        this.jMenu = new JMenuBar();
+        
+        //Style du menu
+        this.jMenu.setBackground(new Color(47,53,66));
+        this.jMenu.setPreferredSize(new Dimension(700,35));
+        this.jMenu.setBorder(BorderFactory.createLineBorder(new Color(47,53,66)));
 
         //Creation des elements du menu materiel
         this.btnAffichageEmpruntMat = new JMenuItem("Voir les emprunts de matériel");
@@ -96,6 +102,8 @@ public class AccueilDirecteur extends JPanel implements ActionListener {
         // Ajout de l'element au menu 
         jMenu.add(menuMateriel);
         jMenu.add(menuVehicule);
+        
+        
 
         // Permet de definir le menu utilise dans la JFrame
         this.framePrincipale.setJMenuBar(jMenu);

@@ -44,9 +44,9 @@ public class AffMateriel extends JPanel implements ActionListener {
         this.monPanelGlobal.setLayout(new BorderLayout());
 
         //Background des panels
-        this.panelMateriel.setBackground(Color.white);
-        this.panelMessage.setBackground(Color.blue);
-        this.panelTableau.setBackground(Color.white);
+        this.panelMateriel.setBackground(new Color(22, 38, 119));
+        this.panelMessage.setBackground(new Color(67, 87, 186));
+        this.panelTableau.setBackground(new Color(22, 38, 119));
 
         //Disposition des panels
         this.panelMateriel.setLayout(new BorderLayout());

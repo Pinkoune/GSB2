@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 09 déc. 2021 à 22:07
--- Version du serveur :  5.7.31
--- Version de PHP : 7.3.21
+-- Hôte : localhost:8889
+-- Généré le : dim. 12 déc. 2021 à 21:13
+-- Version du serveur : 5.7.34
+-- Version de PHP : 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,17 +27,21 @@ SET time_zone = "+00:00";
 -- Structure de la table `empruntm`
 --
 
-DROP TABLE IF EXISTS `empruntm`;
-CREATE TABLE IF NOT EXISTS `empruntm` (
-  `idMateriel` int(11) NOT NULL AUTO_INCREMENT,
-  `dateDebut` varchar(50) NOT NULL,
-  `dateFin` varchar(50) NOT NULL,
+CREATE TABLE `empruntm` (
+  `idMateriel` int(11) NOT NULL,
+  `dateDebut` date NOT NULL,
+  `dateFin` date NOT NULL,
   `duree` float NOT NULL,
-  `idVisiteur` int(11) NOT NULL,
-  PRIMARY KEY (`idMateriel`),
-  KEY `id` (`idVisiteur`),
-  KEY `idMateriel` (`idMateriel`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  `idVisiteur` varchar(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `empruntm`
+--
+
+INSERT INTO `empruntm` (`idMateriel`, `dateDebut`, `dateFin`, `duree`, `idVisiteur`) VALUES
+(4, '2021-12-10', '2021-12-12', 2, '555'),
+(2, '2021-12-10', '2021-12-11', 1, 'a17');
 
 -- --------------------------------------------------------
 
@@ -45,24 +49,13 @@ CREATE TABLE IF NOT EXISTS `empruntm` (
 -- Structure de la table `empruntv`
 --
 
-DROP TABLE IF EXISTS `empruntv`;
-CREATE TABLE IF NOT EXISTS `empruntv` (
-  `idVehicule` int(11) NOT NULL AUTO_INCREMENT,
-  `dateDebut` varchar(50) NOT NULL,
-  `dateFin` varchar(50) NOT NULL,
+CREATE TABLE `empruntv` (
+  `idVehicule` int(11) NOT NULL,
+  `dateDebut` date NOT NULL,
+  `dateFin` date NOT NULL,
   `duree` float NOT NULL,
-  `idVisiteur` int(11) NOT NULL,
-  PRIMARY KEY (`idVehicule`),
-  KEY `id` (`idVisiteur`),
-  KEY `idVehicule` (`idVehicule`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `empruntv`
---
-
-INSERT INTO `empruntv` (`idVehicule`, `dateDebut`, `dateFin`, `duree`, `idVisiteur`) VALUES
-(4, 'ergz', 'zerg', 3, 555);
+  `idVisiteur` varchar(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -70,24 +63,23 @@ INSERT INTO `empruntv` (`idVehicule`, `dateDebut`, `dateFin`, `duree`, `idVisite
 -- Structure de la table `materiel`
 --
 
-DROP TABLE IF EXISTS `materiel`;
-CREATE TABLE IF NOT EXISTS `materiel` (
-  `idMateriel` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `materiel` (
+  `idMateriel` int(11) NOT NULL,
   `nomMateriel` varchar(50) NOT NULL,
   `typeMateriel` varchar(50) NOT NULL,
   `largeur` float NOT NULL,
   `longueur` float NOT NULL,
-  `statut` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idMateriel`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  `statut` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `materiel`
 --
 
 INSERT INTO `materiel` (`idMateriel`, `nomMateriel`, `typeMateriel`, `largeur`, `longueur`, `statut`) VALUES
-(2, 'iPad Pro 2021', 'Tablette', 12, 8, NULL),
-(4, 'Loutre de combat', 'carnivore', 100, 800, NULL);
+(2, 'iPad Pro 2021', 'Tablette', 12, 8, 1),
+(4, 'Loutre de combat', 'carnivore', 100, 800, 1),
+(10, 'test', 'ui', 3, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -95,16 +87,14 @@ INSERT INTO `materiel` (`idMateriel`, `nomMateriel`, `typeMateriel`, `largeur`, 
 -- Structure de la table `vehicule`
 --
 
-DROP TABLE IF EXISTS `vehicule`;
-CREATE TABLE IF NOT EXISTS `vehicule` (
-  `idVehicule` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `vehicule` (
+  `idVehicule` int(11) NOT NULL,
   `immat` varchar(7) NOT NULL,
   `modele` varchar(50) NOT NULL,
   `marque` varchar(50) NOT NULL,
   `nbPlace` int(10) NOT NULL,
-  `statut` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idVehicule`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `statut` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `vehicule`
@@ -120,8 +110,7 @@ INSERT INTO `vehicule` (`idVehicule`, `immat`, `modele`, `marque`, `nbPlace`, `s
 -- Structure de la table `visiteur`
 --
 
-DROP TABLE IF EXISTS `visiteur`;
-CREATE TABLE IF NOT EXISTS `visiteur` (
+CREATE TABLE `visiteur` (
   `id` char(4) NOT NULL,
   `nom` char(30) DEFAULT NULL,
   `prenom` char(30) DEFAULT NULL,
@@ -131,8 +120,7 @@ CREATE TABLE IF NOT EXISTS `visiteur` (
   `cp` char(5) DEFAULT NULL,
   `ville` char(30) DEFAULT NULL,
   `dateEmbauche` date DEFAULT NULL,
-  `statut` char(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `statut` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -170,6 +158,72 @@ INSERT INTO `visiteur` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, 
 ('f21', 'Finck', 'Jacques', 'jfinck', '6d8b2060b60132d9bdb09d37913fbef637b295f2', '10 avenue du Prado', '13002', 'Marseille', '2001-11-10', NULL),
 ('f39', 'Frémont', 'Fernande', 'ffremont', 'aa45efe9ecbf37db0089beeedea62ceb57db7f17', '4 route de la mer', '13012', 'Allauh', '1998-10-01', NULL),
 ('f4', 'Gest', 'Alain', 'agest', '1af7dedacbbe8ce324e316429a816daeff4c542f', '30 avenue de la mer', '13025', 'Berre', '1985-11-01', NULL);
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `empruntm`
+--
+ALTER TABLE `empruntm`
+  ADD PRIMARY KEY (`idMateriel`),
+  ADD KEY `id` (`idVisiteur`),
+  ADD KEY `idMateriel` (`idMateriel`);
+
+--
+-- Index pour la table `empruntv`
+--
+ALTER TABLE `empruntv`
+  ADD PRIMARY KEY (`idVehicule`),
+  ADD KEY `id` (`idVisiteur`),
+  ADD KEY `idVehicule` (`idVehicule`);
+
+--
+-- Index pour la table `materiel`
+--
+ALTER TABLE `materiel`
+  ADD PRIMARY KEY (`idMateriel`);
+
+--
+-- Index pour la table `vehicule`
+--
+ALTER TABLE `vehicule`
+  ADD PRIMARY KEY (`idVehicule`);
+
+--
+-- Index pour la table `visiteur`
+--
+ALTER TABLE `visiteur`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `empruntm`
+--
+ALTER TABLE `empruntm`
+  MODIFY `idMateriel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT pour la table `empruntv`
+--
+ALTER TABLE `empruntv`
+  MODIFY `idVehicule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT pour la table `materiel`
+--
+ALTER TABLE `materiel`
+  MODIFY `idMateriel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT pour la table `vehicule`
+--
+ALTER TABLE `vehicule`
+  MODIFY `idVehicule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
