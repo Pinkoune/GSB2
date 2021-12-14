@@ -44,9 +44,9 @@ public class EmpruntAffichageMateriel extends JPanel implements ActionListener {
         this.monPanelGlobal.setLayout(new BorderLayout());
 
         //Background des panels
-        this.panelMateriel.setBackground(Color.white);
-        this.panelMessage.setBackground(Color.blue);
-        this.panelTableau.setBackground(Color.white);
+        this.panelMateriel.setBackground(new Color(22, 38, 119));
+        this.panelMessage.setBackground(new Color(67, 87, 186));
+        this.panelTableau.setBackground(new Color(22, 38, 119));
 
         //Disposition des panels
         this.panelMateriel.setLayout(new BorderLayout());
@@ -60,7 +60,7 @@ public class EmpruntAffichageMateriel extends JPanel implements ActionListener {
         this.lblMessage.setForeground(Color.white);
 
         //Tableau
-        Object data[][] = new Object[7][7];
+        Object data[][] = new Object[15][7];
         int i = 0;
         for (Materiel monMateriel: listeMateriel) {
             data[i][0] = monMateriel.getNomMateriel();
@@ -82,6 +82,8 @@ public class EmpruntAffichageMateriel extends JPanel implements ActionListener {
             "Durée de l'emprunt",
         };
         this.tableau = new JTable(data, title);
+        this.tableau.setBackground(new Color(47,53,66));
+        this.tableau.setForeground(Color.white);
         this.tableau.setPreferredScrollableViewportSize(new Dimension(350, 300));
 
         //Taille

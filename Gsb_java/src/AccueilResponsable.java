@@ -7,10 +7,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -69,20 +71,32 @@ public class AccueilResponsable extends JPanel implements ActionListener {
         this.framePrincipale.setLocationRelativeTo(null);
         this.framePrincipale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.framePrincipale.setSize(700, 500);
-
+        
         //Instanciation des panels
         this.monPanel.setLayout(new FlowLayout(1, 4, 2));
-        this.monPanel.setBackground(Color.pink);
+        this.monPanel.setBackground(new Color(22, 38, 119));
 
         this.monPanelGlobal = new JPanel();
         this.monPanelGlobal.setLayout(new BorderLayout());
-
+        
+        //Creation de la barre de menu
+        this.jMenu = new JMenuBar();
+        
+        //Style de la barre de menu
+        this.jMenu.setBackground(new Color(47,53,66));
+        this.jMenu.setPreferredSize(new Dimension(700,30));
+        this.jMenu.setBorder(BorderFactory.createLineBorder(new Color(47,53,66)));
+        
         //Creation des menus
         this.menuMateriel = new JMenu("Menu du matériel");
         this.menuVehicule = new JMenu("Menu des véhicules");
-
-        //Creation de la barre de menu
-        JMenuBar jMenu = new JMenuBar();
+        
+        this.menuMateriel.setBackground(new Color(47,53,66));
+        this.menuVehicule.setBackground(new Color(47,53,66));
+        
+        //Style des menus
+        this.menuMateriel.setForeground(Color.white);
+        this.menuVehicule.setForeground(Color.white);
 
         //Creation des elements du menu materiel
         this.btnAffichageMateriel = new JMenuItem("Afficher les matériels");
@@ -103,14 +117,36 @@ public class AccueilResponsable extends JPanel implements ActionListener {
         this.menuVehicule.add(this.btnAjouterVehicule);
         this.menuVehicule.add(this.btnSupprimerVehicule);
         this.menuVehicule.add(this.btnRechercherVehicule);
+        
+        //Couleurs des items des matériels
+        this.btnAjouterMateriel.setBackground(new Color(47,53,66));
+        this.btnSupprimerMateriel.setBackground(new Color(47,53,66));
+        this.btnRechercherMateriel.setBackground(new Color(47,53,66));
+        this.btnAffichageMateriel.setBackground(new Color(47,53,66));
+        
+        this.btnAjouterMateriel.setForeground(Color.white);
+        this.btnSupprimerMateriel.setForeground(Color.white);
+        this.btnRechercherMateriel.setForeground(Color.white);
+        this.btnAffichageMateriel.setForeground(Color.white);
+        
+        //Couleurs des items des véhicules
+        this.btnAjouterVehicule.setBackground(new Color(47,53,66));
+        this.btnSupprimerVehicule.setBackground(new Color(47,53,66));
+        this.btnRechercherVehicule.setBackground(new Color(47,53,66));
+        this.btnAffichageVehicule.setBackground(new Color(47,53,66));
+        
+        this.btnAjouterVehicule.setForeground(Color.white);
+        this.btnSupprimerVehicule.setForeground(Color.white);
+        this.btnRechercherVehicule.setForeground(Color.white);
+        this.btnAffichageVehicule.setForeground(Color.white);
 
-        //Ecoute des items du menu course
+        //Ecoute des items du menu matériel
         this.btnAjouterMateriel.addActionListener(this);
         this.btnSupprimerMateriel.addActionListener(this);
         this.btnRechercherMateriel.addActionListener(this);
         this.btnAffichageMateriel.addActionListener(this);
 
-        //Ecoute des items du menu ecurie
+        //Ecoute des items du menu véhicule
         this.btnAjouterVehicule.addActionListener(this);
         this.btnSupprimerVehicule.addActionListener(this);
         this.btnRechercherVehicule.addActionListener(this);
@@ -125,7 +161,11 @@ public class AccueilResponsable extends JPanel implements ActionListener {
 
         //Label affichant le message
         this.lblMessage = new JLabel();
-        this.lblMessage.setText("Résponsable du GSB");
+        this.lblMessage.setText("Responsable du GSB");
+        this.lblMessage.setFont(new Font("Serif", Font.BOLD, 30));
+        
+        //Couleur de la police
+        this.lblMessage.setForeground(Color.white);
 
         //Ajout des panels
         this.monPanel.add(lblMessage);
@@ -146,7 +186,7 @@ public class AccueilResponsable extends JPanel implements ActionListener {
     	
     	String pseudo = this.jtfPseudo.getText();
 
-        //Boutons des Materiels
+        //Boutons des Matériels
         if (e.getSource().equals(btnAjouterMateriel)) {
             this.framePrincipale.getContentPane().removeAll();
             this.framePrincipale.getContentPane().add(new AjoutMateriel().getMonPanelGlobal());
@@ -176,7 +216,7 @@ public class AccueilResponsable extends JPanel implements ActionListener {
             this.framePrincipale.getContentPane().revalidate();
             this.framePrincipale.getContentPane().repaint();
 
-        //Boutons des Vehicules
+        //Boutons des Véhicules
         } else if (e.getSource().equals(btnAjouterVehicule)) {
 
             this.framePrincipale.getContentPane().removeAll();
@@ -187,7 +227,7 @@ public class AccueilResponsable extends JPanel implements ActionListener {
         } else if (e.getSource().equals(btnSupprimerVehicule)) {
 
             this.framePrincipale.getContentPane().removeAll();
-            this.framePrincipale.getContentPane().add(new SuppVehicule().getMonPanelGlobal());
+            this.framePrincipale.getContentPane().add(new SuppVehicule(pseudo).getMonPanelGlobal());
             this.framePrincipale.getContentPane().revalidate();
             this.framePrincipale.getContentPane().repaint();
 

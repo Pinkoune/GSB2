@@ -9,8 +9,12 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
+import javax.swing.ComboBoxEditor;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,7 +31,6 @@ public class SuppMateriel extends JPanel implements ActionListener {
     private JPanel panelSuppMateriel;
     private JPanel panelMessage;
     private JPanel panelChamps;
-    private JPanel panelBtnQuitter;
     private JPanel monPanelGlobal = new JPanel();
 
     //Label
@@ -35,8 +38,10 @@ public class SuppMateriel extends JPanel implements ActionListener {
     private JLabel lblNomMateriel;
     private JLabel lblInsertion;
 
-    //JTextField
-    private JTextField jtfSuppression;
+    //JBox
+  	private JComboBox<String> listeMateriel;
+  	
+  	//Login de l'utilisateur
     private JTextField jtfPseudo;
 
     //Bouton
@@ -47,6 +52,9 @@ public class SuppMateriel extends JPanel implements ActionListener {
     	//Definition du pseudo
     	this.jtfPseudo = new JTextField();
     	this.jtfPseudo.setText(unPseudo);
+    	
+    	//Liste des vehicules
+        this.listeMateriel = new JComboBox<String>();
 
         //Instanciation de la frame
         this.framePrincipale = new JFrame();
@@ -55,46 +63,59 @@ public class SuppMateriel extends JPanel implements ActionListener {
         this.panelSuppMateriel = new JPanel();
         this.panelMessage = new JPanel();
         this.panelChamps = new JPanel();
-        this.panelBtnQuitter = new JPanel();
         this.monPanelGlobal.setLayout(new BorderLayout());
 
         //Background des panels
         this.panelSuppMateriel.setBackground(Color.white);
-        this.panelMessage.setBackground(Color.blue);
-        this.panelChamps.setBackground(Color.white);
-        this.panelBtnQuitter.setBackground(Color.white);
+        this.panelMessage.setBackground(new Color(67, 87, 186));
+        this.panelChamps.setBackground(new Color(22, 38, 119));
 
         //Disposition des panels
         this.panelSuppMateriel.setLayout(new BorderLayout());
         this.panelMessage.setLayout(new FlowLayout());
         this.panelChamps.setLayout(new FlowLayout());
-        this.panelBtnQuitter.setLayout(new FlowLayout());
 
         //Instanciation des messages
         this.lblMessage = new JLabel("Materiel - suppression");
-        this.lblNomMateriel = new JLabel("Entrez le nom :");
+        this.lblNomMateriel = new JLabel("Choisissez le matériel à supprimer :");
         this.lblInsertion = new JLabel("");
 
-        //Instanciation des entrées
-        this.jtfSuppression = new JTextField();
-        this.jtfSuppression.setPreferredSize(new Dimension(150, 30));
+        //Liste des Matériels
+        ArrayList<String> listeDeMateriel = Modele.recupListeNomMateriel();
+ 		String nomMateriel[] = new String[Modele.nbListeMateriel()];
+ 		int i = 0; 
+ 	    for (String unMateriel : listeDeMateriel) {
+ 	    	nomMateriel[i] = unMateriel;
+ 	        i++;
+ 	    }
+ 	   this.listeMateriel = new JComboBox<String>(nomMateriel);	   
+ 	   this.listeMateriel.setBackground(new Color(47,53,66));
+ 	   this.listeMateriel.setBorder(BorderFactory.createLineBorder(new Color(67, 87, 186)));
+ 	   this.listeMateriel.setForeground(Color.white);
+ 	   this.listeMateriel.setSelectedIndex(-1);
+ 	   this.listeMateriel.addActionListener(this);
 
         //Couleur de la police
         this.lblMessage.setForeground(Color.white);
+        this.lblNomMateriel.setForeground(Color.white);
+        this.lblInsertion.setForeground(Color.white);
 
         //Instanciation des boutons
         this.btnValider = new JButton("Valider");
+        this.btnValider.setBorder(null);
+		this.btnValider.setBackground(new Color(67, 87, 186));
+		this.btnValider.setForeground(Color.white);
+		this.btnValider.setPreferredSize(new Dimension(170,30));
         this.btnValider.addActionListener(this);
 
         //Ajout des attributs aux panels
         this.panelSuppMateriel.add(panelMessage, BorderLayout.PAGE_START);
         this.panelSuppMateriel.add(panelChamps, BorderLayout.CENTER);
-        this.panelSuppMateriel.add(panelBtnQuitter, BorderLayout.PAGE_END);
 
         this.panelMessage.add(lblMessage);
 
         this.panelChamps.add(lblNomMateriel);
-        this.panelChamps.add(jtfSuppression);
+        this.panelChamps.add(listeMateriel);
         this.panelChamps.add(btnValider);
         this.panelChamps.add(lblInsertion);
 
@@ -112,10 +133,9 @@ public class SuppMateriel extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        //Si la source de l'événement est le JButton appelé
         if (e.getSource() == btnValider) {
         	
-            String nomMateriel = jtfSuppression.getText();
+        	String nomMateriel = listeMateriel.getSelectedItem().toString();	
             int idMat = Modele.recupIdMateriel(nomMateriel);
             
             //Changement du nom Visiteur en idVisiteur

@@ -7,10 +7,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -70,18 +72,27 @@ public class AccueilVisiteur extends JPanel implements ActionListener {
 
         //Instanciation des panels
         this.monPanel.setLayout(new FlowLayout(1, 4, 2));
-        this.monPanel.setBackground(Color.pink);
+        this.monPanel.setBackground(new Color(22, 38, 119));
 
         this.monPanelGlobal = new JPanel();
         this.monPanelGlobal.setLayout(new BorderLayout());
 
+        //Creation de la barre de menu
+        this.jMenu = new JMenuBar();
+        
+        //Style de la barre de menu
+        this.jMenu.setBackground(new Color(47,53,66));
+        this.jMenu.setPreferredSize(new Dimension(700,30));
+        this.jMenu.setBorder(BorderFactory.createLineBorder(new Color(47,53,66)));
+        
         //Creation des menus
         this.menuMateriel = new JMenu("Emprunt matériel");
         this.menuVehicule = new JMenu("Emprunt véhicule");
-
-        //Creation de la barre de menu
-        JMenuBar jMenu = new JMenuBar();
-
+        
+        //Style des menus
+        this.menuMateriel.setForeground(Color.white);
+        this.menuVehicule.setForeground(Color.white);
+        
         //Creation des elements du menu materiel
         this.btnAffichageEmpruntMat = new JMenuItem("Voir mes emprunts");
         this.btnEmpruntMateriel = new JMenuItem("Emprunter un matériel");
@@ -97,6 +108,24 @@ public class AccueilVisiteur extends JPanel implements ActionListener {
         this.menuVehicule.add(this.btnAffichageEmpruntVehicule);
         this.menuVehicule.add(this.btnEmpruntVehicule);
         this.menuVehicule.add(this.btnSupprimerEmpruntVehicule);
+        
+        //Couleurs des items des matériels
+        this.btnAffichageEmpruntMat.setBackground(new Color(47,53,66));
+        this.btnEmpruntMateriel.setBackground(new Color(47,53,66));
+        this.btnSupprimerEmpruntMat.setBackground(new Color(47,53,66));
+        
+        this.btnAffichageEmpruntMat.setForeground(Color.white);
+        this.btnEmpruntMateriel.setForeground(Color.white);
+        this.btnSupprimerEmpruntMat.setForeground(Color.white);
+        
+        //Couleurs des items des véhicules
+        this.btnAffichageEmpruntVehicule.setBackground(new Color(47,53,66));
+        this.btnEmpruntVehicule.setBackground(new Color(47,53,66));
+        this.btnSupprimerEmpruntVehicule.setBackground(new Color(47,53,66));
+        
+        this.btnAffichageEmpruntVehicule.setForeground(Color.white);
+        this.btnEmpruntVehicule.setForeground(Color.white);
+        this.btnSupprimerEmpruntVehicule.setForeground(Color.white);
 
         //Ecoute des items du menu course
         this.btnEmpruntMateriel.addActionListener(this);
@@ -118,6 +147,10 @@ public class AccueilVisiteur extends JPanel implements ActionListener {
         //Label affichant le message
         this.lblMessage = new JLabel();
         this.lblMessage.setText("Visiteur du GSB");
+        this.lblMessage.setFont(new Font("Serif", Font.BOLD, 30));
+        
+        //Couleur de la police
+        this.lblMessage.setForeground(Color.white);
 
         //Ajout des panels
         this.monPanel.add(lblMessage);
@@ -174,7 +207,7 @@ public class AccueilVisiteur extends JPanel implements ActionListener {
         } else if (e.getSource().equals(btnSupprimerEmpruntVehicule)) {
 
             this.framePrincipale.getContentPane().removeAll();
-            this.framePrincipale.getContentPane().add(new EmpruntSuppVehicule().getMonPanelGlobal());
+            this.framePrincipale.getContentPane().add(new EmpruntSuppVehicule(pseudo).getMonPanelGlobal());
             this.framePrincipale.getContentPane().revalidate();
             this.framePrincipale.getContentPane().repaint();
 

@@ -10,6 +10,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -60,42 +61,82 @@ public class AjoutVehicule extends JPanel implements ActionListener {
 
         //Background des panels
         this.panelAjoutVehicule.setBackground(Color.white);
-        this.panelMessage.setBackground(Color.blue);
-        this.panelChamps.setBackground(Color.white);
+        this.panelMessage.setBackground(new Color(144, 12, 63));
+        this.panelChamps.setBackground(new Color(88, 24, 69));
 
         //Disposition des panels
         this.panelAjoutVehicule.setLayout(new BorderLayout());
         this.panelMessage.setLayout(new FlowLayout());
-        this.panelChamps.setLayout(new FlowLayout());
+        this.panelChamps.setLayout(null);
 
         //Instanciation des messages
         this.lblMessage = new JLabel("Véhicule - ajout");
-        this.lblImmatriculation = new JLabel("Immatriculation du Véhicule :");
-        this.lblModele = new JLabel("Modèle du Véhicule :");
-        this.lblMarque = new JLabel("Marque du Véhicule :");
-        this.lblNbPLaces = new JLabel("Nombre de places du Véhicule :");
+        
+        this.lblImmatriculation = new JLabel("Immatriculation du Véhicule");
+        this.lblImmatriculation.setBounds(262, 35, 200, 25);
+        
+        this.lblModele = new JLabel("Modèle du Véhicule");
+        this.lblModele.setBounds(285, 95, 150, 25);
+        
+        this.lblMarque = new JLabel("Marque du Véhicule");
+        this.lblMarque.setBounds(285, 155, 150, 25);
+        
+        this.lblNbPLaces = new JLabel("Nombre de places du Véhicule");
+        this.lblNbPLaces.setBounds(255, 215, 200, 25);
+        
         this.lblInsertion = new JLabel();
+        this.lblInsertion.setBounds(245, 330, 200, 25);
         this.lblInsertion.setText("");
 
         //Instanciation des entrées
         this.jtfImmatriculation = new JTextField();
+        this.jtfImmatriculation.setBackground(new Color(47,53,66));
+		this.jtfImmatriculation.setBorder(BorderFactory.createLineBorder(new Color(144, 12, 63)));
         this.jtfImmatriculation.setPreferredSize(new Dimension(150, 30));
+        this.jtfImmatriculation.setCaretColor(Color.white);
+        this.jtfImmatriculation.setBounds(265, 60, 150, 25);
+        
         this.jtfModele = new JTextField();
+        this.jtfModele.setBackground(new Color(47,53,66));
+		this.jtfModele.setBorder(BorderFactory.createLineBorder(new Color(144, 12, 63)));
         this.jtfModele.setPreferredSize(new Dimension(150, 30));
+        this.jtfModele.setCaretColor(Color.white);
+        this.jtfModele.setBounds(265, 120, 150, 25);
+        
         this.jtfMarque = new JTextField();
+        this.jtfMarque.setBackground(new Color(47,53,66));
+		this.jtfMarque.setBorder(BorderFactory.createLineBorder(new Color(144, 12, 63)));
         this.jtfMarque.setPreferredSize(new Dimension(150, 30));
+        this.jtfMarque.setCaretColor(Color.white);
+        this.jtfMarque.setBounds(265, 180, 150, 25);
+        
         this.jtfNbPLaces = new JTextField();
+        this.jtfNbPLaces.setBackground(new Color(47,53,66));
+		this.jtfNbPLaces.setBorder(BorderFactory.createLineBorder(new Color(144, 12, 63)));
         this.jtfNbPLaces.setPreferredSize(new Dimension(150, 30));
+        this.jtfNbPLaces.setCaretColor(Color.white);
+        this.jtfNbPLaces.setBounds(265, 240, 150, 25);
 
         //Couleur de la police
         this.lblMessage.setForeground(Color.white);
-        this.lblImmatriculation.setForeground(Color.black);
-        this.lblModele.setForeground(Color.black);
-        this.lblMarque.setForeground(Color.black);
-        this.lblNbPLaces.setForeground(Color.black);
+        this.lblImmatriculation.setForeground(Color.white);
+        this.lblModele.setForeground(Color.white);
+        this.lblMarque.setForeground(Color.white);
+        this.lblNbPLaces.setForeground(Color.white);
+        this.lblInsertion.setForeground(Color.white);
+        
+        this.jtfImmatriculation.setForeground(Color.white);
+        this.jtfModele.setForeground(Color.white);
+        this.jtfMarque.setForeground(Color.white);
+        this.jtfNbPLaces.setForeground(Color.white);
 
         //Instanciation des boutons
         this.btnValider = new JButton("Valider");
+        this.btnValider.setBorder(null);
+		this.btnValider.setBackground(new Color(144, 12, 63));
+		this.btnValider.setForeground(Color.white);
+		this.btnValider.setPreferredSize(new Dimension(170,30));
+		this.btnValider.setBounds(240, 285, 200, 35);
         this.btnValider.addActionListener(this);
 
         //Ajout des attributs aux panels

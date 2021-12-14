@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 
 public class AffEmpruntVehiculeDirecteur extends JPanel implements ActionListener {
@@ -27,6 +28,9 @@ public class AffEmpruntVehiculeDirecteur extends JPanel implements ActionListene
 
     //Tableau
     private JTable tableau;
+    
+    //Bouton
+    private JButton btnPDF;
 
     //Scrollbar
     private JScrollPane scrollPane;
@@ -45,7 +49,7 @@ public class AffEmpruntVehiculeDirecteur extends JPanel implements ActionListene
 
         //Background des panels
         this.panelMateriel.setBackground(Color.white);
-        this.panelMessage.setBackground(Color.blue);
+        this.panelMessage.setBackground(new Color(144, 12, 63));
         this.panelTableau.setBackground(Color.white);
 
         //Disposition des panels
@@ -58,9 +62,18 @@ public class AffEmpruntVehiculeDirecteur extends JPanel implements ActionListene
 
         //Couleur de la police
         this.lblMessage.setForeground(Color.white);
+        
+        //Instanciation du bouton de pdf
+        this.btnPDF = new JButton("PDF");
+        this.btnPDF.setBorder(null);
+		this.btnPDF.setBackground(new Color(88, 24, 69));
+		this.btnPDF.setForeground(Color.white);
+		this.btnPDF.setPreferredSize(new Dimension(170,30));
+		this.btnPDF.setBounds(240, 285, 200, 35);
+        this.btnPDF.addActionListener(this);
 
         //Tableau
-        Object data[][] = new Object[8][8];
+        Object data[][] = new Object[15][8];
         int i = 0;
         for (Vehicule monVehicule: listeVehicule) {
             data[i][0] = monVehicule.getImmat();
@@ -84,6 +97,8 @@ public class AffEmpruntVehiculeDirecteur extends JPanel implements ActionListene
             "Prenom de l'emprunteur",
         };
         this.tableau = new JTable(data, title);
+        this.tableau.setBackground(new Color(47,53,66));
+        this.tableau.setForeground(Color.white);
         this.tableau.setPreferredScrollableViewportSize(new Dimension(350, 300));
 
         //Taille
@@ -97,6 +112,7 @@ public class AffEmpruntVehiculeDirecteur extends JPanel implements ActionListene
         this.panelMateriel.add(panelMessage, BorderLayout.PAGE_START);
 
         this.panelMessage.add(lblMessage);
+        this.panelMessage.add(btnPDF);
 
         //Toujours à la fin
         /**
@@ -114,5 +130,20 @@ public class AffEmpruntVehiculeDirecteur extends JPanel implements ActionListene
         return monPanelGlobal;
     }
 
-    public void actionPerformed(ActionEvent e) {}
+    public void actionPerformed(ActionEvent e) {
+    	if(e.getSource() == btnPDF) {
+    		MessageFormat header = new MessageFormat("Statistiques des emprunts.");
+    		MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+    		
+    		try {
+    			this.tableau.print(JTable.PrintMode.NORMAL, header, footer);
+    		}
+    		catch(java.awt.print.PrinterException ev){
+    			System.err.format("Erreur d'exportation PDF", ev.getMessage());
+    		}
+    		catch(java.lang.NullPointerException ea) {
+    			this.lblMessage.setText("Information non inscrites.");
+    		}
+    	}
+    }
 }

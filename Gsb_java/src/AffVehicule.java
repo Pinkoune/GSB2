@@ -45,7 +45,7 @@ public class AffVehicule extends JPanel implements ActionListener {
 
         //Background des panels
         this.panelVehicule.setBackground(Color.white);
-        this.panelMessage.setBackground(Color.blue);
+        this.panelMessage.setBackground(new Color(144, 12, 63));
         this.panelTableau.setBackground(Color.white);
 
         //Disposition des panels
@@ -60,7 +60,7 @@ public class AffVehicule extends JPanel implements ActionListener {
         this.lblMessage.setForeground(Color.white);
 
         //Tableau
-        Object data[][] = new Object[5][5];
+        Object data[][] = new Object[15][5];
         int i = 0;
         for (Vehicule monVehicule: listeVehicule) {
             data[i][0] = monVehicule.getImmat();
@@ -76,6 +76,8 @@ public class AffVehicule extends JPanel implements ActionListener {
             "Nombre de places du Véhicule",
         };
         this.tableau = new JTable(data, title);
+        this.tableau.setBackground(new Color(47,53,66));
+        this.tableau.setForeground(Color.white);
         this.tableau.setPreferredScrollableViewportSize(new Dimension(350, 300));
 
         //Taille
